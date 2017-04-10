@@ -1,0 +1,291 @@
+/* * {
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none;   
+  -khtml-user-select: none;    
+  -moz-user-select: none;      
+  -ms-user-select: none;
+  user-select: none;
+}*/
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 3s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+/* Modal style */
+
+.MyModal__close {
+    position: absolute; 
+    top: 10px; 
+    right: 10px;
+    width: 24px; 
+    height: 24px; 
+    background: #ffffff;
+    border-radius: 12px; 
+    box-shadow: #cccccc 1px 1px 1px; 
+    color: #cccccc; 
+    text-align: center; 
+    text-decoration: none; 
+    font-weight: bold; 
+    line-height: 25px; 
+    cursor: pointer; 
+}
+
+.flexcontainer {
+  margin-left: auto;
+  margin-right: auto;
+	display: flex;
+	flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.flexcontainer .UITable{
+  margin: 2px;
+  padding: 5px;
+}
+
+@media screen and (max-width: 4900px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+
+@media screen and (max-width: 1440px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 1280px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 960px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 950px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 900px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 800px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 773px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 736px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 732px) {
+	.flexcontainer {
+	  width: 730px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 360px;
+	}
+}
+@media screen and (max-width: 667px) {
+	.flexcontainer {
+	  width: 667px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 300px;
+	}
+}
+@media screen and (max-width: 640px) {
+	.flexcontainer {
+	  width: 640px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 300px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.flexcontainer {
+	  width: 600px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 596px;
+	}
+}
+@media screen and (max-width: 568px) {
+	.flexcontainer {
+	  width: 568px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 564px;
+	}
+}
+@media screen and (max-width: 533px) {
+	.flexcontainer {
+	  width: 533px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 529px;
+	}
+}
+@media screen and (max-width: 480px) {
+	.flexcontainer {
+	  width: 480px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 476px;
+	}
+}
+@media screen and (max-width: 435px) {
+	.flexcontainer {
+	  width: 435px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 431px;
+	}
+}
+@media screen and (max-width: 414px) {
+	.flexcontainer {
+	  width: 414px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 410px;
+	}
+}
+@media screen and (max-width: 412px) {
+	.flexcontainer {
+	  width: 412px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 408px;
+	}
+}
+@media screen and (max-width: 384px) {
+	.flexcontainer {
+	  width: 384px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 380px;
+	}
+}
+@media screen and (max-width: 375px) {
+	.flexcontainer {
+	  width: 375px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 371px;
+	}
+}
+@media screen and (max-width: 360px) { 
+	.flexcontainer {
+	  width: 360px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 356px;
+	}
+}
+@media screen and (max-width: 320px) {
+	.flexcontainer {
+	  width: 320px;
+	}
+
+	.flexcontainer .UITable {
+	  width: 316px;
+	}
+}
+
+body {
+	background-color: #f3f2ee;
+}

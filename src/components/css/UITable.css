@@ -1,0 +1,279 @@
+/* UITable */
+
+.UITable {
+    color: #36445E  !important;
+}
+.UITable tbody, .UITable thead,  .UITable table, {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+.UITable thead tr {
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+.UITable thead tr th {
+    border-right: 2px solid #ffffff !important;
+    border-bottom: 2px solid #ffffff !important;
+    background-color: #36445E !important;
+    text-align: center !important;
+    font-weight: normal !important;
+    color: #ffffff  !important;
+}
+.UITable thead tr td {
+    border-bottom: 2px solid #ffffff !important;
+    background-color: #36445E !important;
+    color: #ffffff  !important;
+}
+
+/*
+.UITable thead tr:last-child {
+    text-align: center !important;
+}
+*/
+.UITable tbody tr {
+    background-color: #8CDF85 !important;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+.UITable tbody tr.hiden {
+    background-color: #92C3E4 !important;
+}
+.UITable tbody tr.free {
+    background-color: #8CDF85 !important;
+}
+.UITable tbody tr.holden {
+    background-color: #C3A2D7 !important;
+}
+.UITable tbody tr.holden:hover, .UITable tbody tr.hiden:hover {
+    opacity: 0.8;
+}
+.UITable tbody tr.free:hover {
+    opacity: 0.8;
+}
+.UITable tbody tr.active:hover {
+    background-color: #C3A2D7 !important;
+}
+.UITable tbody tr {
+    border: none !important;
+    border-bottom: none !important;
+}
+.UITable tbody tr th {
+    border-right: 2px solid #ffffff !important;
+    border-bottom: 2px solid #ffffff !important;
+    text-align: center  !important;
+    font-weight: normal !important;
+    color: #36445E  !important;
+    box-shadow: none !important;
+}
+.UITable tbody tr td {
+    border-bottom: 2px solid #ffffff !important;
+    color: #36445E  !important;
+    padding-top: 3px  !important;
+    padding-bottom: 3px  !important;
+    box-shadow: none !important;
+}
+
+.ui.compact.table th {
+    padding-left: 0.3em !important;
+    padding-right: 0.3em !important;
+}
+
+.ui.compact.table td {
+    padding-top: 0.1em !important;
+    padding-right: 0.3em !important;
+    padding-bottom: 0.1em !important;
+    padding-left: 0.3em !important;
+}
+
+.UIpic__time {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(https://court-static.korona-tennis.ru/icons/time.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: left;
+    line-height: 32px;
+    padding-top: 4px;
+}
+.UIpic__cord {
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+    background: url(https://court-static.korona-tennis.ru/icons/cord.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    text-align: right;
+    line-height: 32px;
+    padding-top: 4px;
+}
+.UIpic__num {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: right;
+    line-height: 32px;
+    font-size: 28px;
+    padding-top: 4px;
+    font-weight: bold !important;
+}
+.UIpic__leased {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(https://court-static.korona-tennis.ru/icons/leased.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.UIpic__free {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+}
+.UIpic__playball {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(https://court-static.korona-tennis.ru/icons/playball.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.UIclear {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/*
+    .UITable tbody tr:hover {
+        opacity: 0.8;
+    }
+*/
+
+/*
+    #36445E
+    #92C3E4
+    #FFA163
+    #C3A2D7
+    #8CDF85
+*/
+
+
+
+.advtooltip {
+  pointer-events: auto !important;
+  opacity: 0.3 !important;
+  z-index: 999 !important;
+}
+
+/* guest.png */
+.smart__field--guest {
+  width: 280px;
+  height: 34px;
+  /*margin-top: 10px;*/
+  padding-top: 1px;
+  padding-left: 32px;
+  margin-left: 20px;
+  background-color: #ffffff;
+  border: 1px solid #DEDDD9;
+  border-radius: 4px;
+  background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+  background-repeat: no-repeat;
+  background-position: 2% center;
+}
+/* tel.png */
+.smart__field--tel {
+  width: 280px;
+  height: 34px;
+  /*margin-top: 10px;*/
+  padding-top: 1px;
+  padding-left: 32px;
+  margin-left: 20px;
+  background-color: #ffffff;
+  border: 1px solid #DEDDD9;
+  border-radius: 4px;
+  background-image: url(https://court-static.korona-tennis.ru/icons/tel.png);
+  background-repeat: no-repeat;
+  background-position: 2% center;
+}
+/* tel.png */
+.smart__field--username {
+  width: 280px;
+  height: 34px;
+  /*margin-top: 10px;*/
+  padding-top: 1px;
+  padding-left: 32px;
+  margin-left: 20px;
+  background-color: #ffffff;
+  border: 1px solid #DEDDD9;
+  border-radius: 4px;
+  background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+  background-repeat: no-repeat;
+  background-position: 2% center;
+}
+/* tel.png */
+.smart__field--password {
+  width: 280px;
+  height: 34px;
+  /*margin-top: 10px;*/
+  padding-top: 1px;
+  padding-left: 32px;
+  margin-left: 20px;
+  background-color: #ffffff;
+  border: 1px solid #DEDDD9;
+  border-radius: 4px;
+  background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+  background-repeat: no-repeat;
+  background-position: 2% center;
+}
+
+.smart__field input[type="text"], .smart__field--guest input[type="text"], .smart__field--tel input[type="text"], .smart__field--username input[type="text"], .smart__field--password input[type="password"]
+{
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #36445E;
+  width: 240px;
+  height: 27px;
+}
+
+.form__header {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    color: #36445E;
+}
+
+.form__button--submit {
+    width: 50px !important;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #36445E;
+    color: #ffffff;
+    border: 1px solid #36445E;
+    border-radius: 4px;
+}
+
+button[disabled], html input[disabled] {
+    cursor: default;
+    background-color: #cccccc;
+    color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.__react_component_tooltip {
+    pointer-events: auto !important;
+    z-index: 999;
+}

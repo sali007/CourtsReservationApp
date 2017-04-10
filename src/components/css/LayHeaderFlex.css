@@ -1,0 +1,641 @@
+/* LayHeader */
+
+.LayHeader__main {
+    height: 158px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.LayHeader__day {
+    position: relative;
+    background: url(https://court-static.korona-tennis.ru/img/tablo.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    left: 37%;
+    margin-left: 5px;
+
+}
+
+.LayHeader__currentday {
+    text-align: center;
+    display: block;
+    line-height: 100px;
+    vertical-align: baseline;
+    font-size: 49px;
+    font-weight: bold !important;
+    color: #36445F;
+}
+
+.LayHeader__currentday--week {
+    margin-top: 0;
+    padding-top: 0;
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: bold !important;
+    color: #36445F;
+}
+
+.LayHeader__date {
+    /* width: 100%; */
+    margin-left: auto;
+    margin-right: auto;
+    height: 45px;
+}
+
+.LayHeader__date--center {
+    width: 150px;
+    height: 45px;
+    background-color: #ffffff;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.LayHeader__date--center span {
+    width: 150px;
+    height: 45px;
+    background-color: #ffffff;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #ff0000;
+}
+
+.LayHeader__arrow {
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+    height: 45px;
+    background: url(https://court-static.korona-tennis.ru/img/arrows.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+}
+
+.LayHeader__currentdate {
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+    font-weight: bold !important;
+    color: #36445F;
+}
+
+.iCalender {
+    position: relative;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 300;
+}
+
+.LHuser {
+    width: 150px;
+    height: 80px;
+    margin-top: 40px;
+    padding-top: 30px;
+    padding-left: 10px;
+    border: 1px solid #36445F;
+    border-radius: 10px;
+    background: url(https://court-static.korona-tennis.ru/img/rocket.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    text-align: left;
+    color: #fff;
+}
+
+.LHcontainer,
+LHcontainer__sub {
+    padding: 0;
+    margin: 0;
+    /* background: #cecece; */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    align-items: stretch;
+    height: 158px;
+    justify-content: space-between;
+}
+
+LHcontainer__sub2 {
+    position: absolute;
+    padding: 0px;
+    /* background: #cecece; */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.LHcontainer .LHitem,
+.LHcontainer_sub .LHitem {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    color: black;
+    height: 158px;
+}
+
+.item__l {
+    position: absolute;
+    width: 311px;
+    height: 158px;
+    /* background-color: #dadada; */
+    background: url(https://court-static.korona-tennis.ru/img/club_logo.png);
+    background-repeat: no-repeat;
+}
+
+.item__l div {
+    padding-top: 95px;
+    padding-right: 8px;
+    text-align: right !important;
+}
+
+.item__l div span {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold !important;
+    /* text-shadow: 2px 2px 4px #1A70AC, 0 0 2em #1A70AC; */
+    text-shadow: 3px 3px 3px #024D98;
+}
+
+.item__la {
+    height: 158px;
+    background: url(https://court-static.korona-tennis.ru/img/arrow1.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    width: 64px;
+    cursor: pointer;
+    line-height: 158px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.item__d {
+    width: 240px;
+    /* background-color: #f00000; */
+}
+
+.item__de {
+    height: 158px;
+    width: 110px;
+    /* background-color: #dadada; */
+    line-height: 158px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.item__de div {
+    display: inline-table;
+    margin-top: -10px;
+    vertical-align: top !important;
+    font-size: 20px;
+    font-weight: bold !important;
+    color: #36445F;
+}
+
+.item__de div div.LHday {
+    height: 15px;
+}
+
+.item__de div div.LHweekday {
+    height: 15px;
+    padding-bottom: 50px;
+}
+
+.LHcenter__day {
+    text-align: center;
+    /* line-height: 158px; */
+    font-size: 54px !important;
+    cursor: pointer;
+}
+.LHcenter__weekday {
+    position: inherit;
+    text-align: center;
+    margin-top: -30px;
+    /* line-height: 158px; */
+    font-size: 25px !important;
+    cursor: pointer;
+}
+
+.item__ra {
+    height: 158px;
+    background: url(https://court-static.korona-tennis.ru/img/arrow2.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    width: 64px;
+    cursor: pointer;
+    line-height: 158px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.item__c {
+    position: absolute;
+    right: 26%;
+    width: 150px;
+    background-color: #dadada;
+    background: url(https://court-static.korona-tennis.ru/img/btn_cal.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.LayHeader_RC {
+    position: absolute;
+    right: 5%;
+    top: 20px;
+    display: table;
+    width: 252px;
+    height: 99px;
+    border: 1px solid #38445e;
+    border-radius: 6px 6px 6px 6px;
+}
+
+.item__reg_zone {
+    display: table-cell;
+    width: 68px;
+    height: 100%;
+    text-align: center;
+    background-color: #dbdbdb;
+    border-radius: 6px 0px 0px 6px;
+    background-repeat: no-repeat;
+    overflow: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    border-right: 1px solid #38445e;
+}
+
+.icon_guest {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../../../court-static/icons/guest.png);
+    background-repeat: no-repeat;
+    margin: 20px 0px 10px 0px;
+    background-position: center center;
+}
+
+.userId {
+    display: block;
+    font-size: 12px;
+    color: #3a5872;
+    padding-left: 5px;
+    margin: 5px;
+}
+
+.item__user_info {
+    display: table-cell;
+    width: 204px;
+    height: 100%;
+    text-align: left;
+    background-repeat: no-repeat;
+    overflow: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.icon_phone {
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    margin: 47px 0px 0px 34px;
+    background-image: url(../../../court-static/icons/tel.png);
+    background-size: 14px;
+    border-color: white;
+    background-repeat: no-repeat;
+}
+
+.greeting p {
+    position: absolute;
+    height: 20px;
+    margin: 20px 0px 0px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #3a5872;
+}
+
+.phone_num {
+    position: absolute;
+    padding: 35px 0px 0px 53px;
+    font-size: 12px;
+    float: left;
+    color: #3a5872;
+}
+
+.reglink {
+    position: absolute;
+    padding: 80px 0px 0px 58px;
+    font-size: 13px;
+    color: #ffa066;
+    cursor: pointer;
+}
+
+.rocket {
+    height: 108px;
+    width: 109px;
+    margin-left: 75px;
+    padding: 0px;
+    position: absolute;
+    background-image: url(../../../court-static/img/rocket.png);
+    background-repeat: no-repeat;
+}
+
+LHcenter__user {
+    background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+.item__v {
+    width: 50px;
+    background-color: #dadada
+}
+
+@media screen and (max-width: 4900px) {
+    .LayHeader_container {
+        width: 950px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .LayHeader_container {
+        width: 950px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .LayHeader_container {
+        width: 950px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .LayHeader_container {
+        width: 950px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .LayHeader_container {
+        width: 950px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .LayHeader_container {
+        width: 950px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .LayHeader_container {
+        width: 900px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .LayHeader_container {
+        width: 800px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 773px) {
+    .LayHeader_container {
+        width: 773px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .LayHeader_container {
+        width: 768px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .LayHeader_container {
+        width: 730px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+
+}
+
+@media screen and (max-width: 732px) {
+    .LayHeader_container {
+        width: 730px;
+    }
+    .LayHeader_container .UITable {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .LayHeader_container {
+        width: 667px;
+    }
+    .LayHeader_container .UITable {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .LayHeader_container {
+        width: 640px;
+    }
+    .LayHeader_container .UITable {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .LayHeader_container {
+        width: 600px;
+    }
+    .LayHeader_container .UITable {
+        width: 596px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .LayHeader_container {
+        width: 568px;
+    }
+    .LayHeader_container .UITable {
+        width: 564px;
+    }
+}
+
+@media screen and (max-width: 533px) {
+    .LayHeader_container {
+        width: 533px;
+    }
+    .LayHeader_container .UITable {
+        width: 529px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .LayHeader_container {
+        width: 480px;
+    }
+    .LayHeader_container .UITable {
+        width: 476px;
+    }
+}
+
+@media screen and (max-width: 435px) {
+    .LayHeader_container {
+        width: 435px;
+    }
+    .LayHeader_container .UITable {
+        width: 431px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .LayHeader_container {
+        width: 414px;
+    }
+    .LayHeader_container .UITable {
+        width: 410px;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .LayHeader_container {
+        width: 412px;
+    }
+    .LayHeader_container .UITable {
+        width: 408px;
+    }
+}
+
+@media screen and (max-width: 384px) {
+    .LayHeader_container {
+        width: 384px;
+    }
+    .LayHeader_container .UITable {
+        width: 380px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .LayHeader_container {
+        width: 375px;
+    }
+    .LayHeader_container .UITable {
+        width: 371px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .LayHeader_container {
+        width: 360px;
+    }
+    .LayHeader_container .UITable {
+        width: 356px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .LayHeader_container {
+        width: 320px;
+    }
+    .LayHeader_container .UITable {
+        width: 316px;
+    }
+}
+
+@media screen and (max-width: 4900px) {
+    .LayHeader {
+        width: 100%;
+        height: 204px;
+        display: block;
+        background: url(https://court-static.korona-tennis.ru/img/top.png), url(https://court-static.korona-tennis.ru/img/bg_header.png);
+        background-repeat: no-repeat, repeat;
+        background-position: left center, center;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .LayHeader__day {
+        display: none !important;
+    }
+    .LHuser {
+        display: none !important;
+    }
+    .item__c {
+        /* display: none !important; */
+        width: 150px;
+    }
+    .LayHeader {
+        width: 100%;
+        height: 204px;
+        display: block;
+        background: url(https://court-static.korona-tennis.ru/img/bg_header.png);
+        background-repeat: repeat;
+        background-position: center;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .LHuser {
+        display: none !important;
+    }
+    .item__c {
+        display: none !important;
+        /* width: 311px; */
+    }
+    .item__l div {
+        text-align: center !important;
+        padding-left: 10px;
+    }
+    .LayHeader {
+        width: 100%;
+        height: 204px;
+        display: block;
+        background: url(https://court-static.korona-tennis.ru/img/bg_header.png);
+        background-repeat: repeat;
+        background-position: center;
+    }
+}
