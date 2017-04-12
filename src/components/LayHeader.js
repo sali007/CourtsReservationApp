@@ -20,6 +20,7 @@ export default class LayHeader extends Component {
 
     componentWillMount() {
         console.log(this.props.todos.last())
+
         this.setState({
             reservations: this.props.todos.last(),
             dayName: this.getWeekDayNames( new Date(this.props.todos.last())),
