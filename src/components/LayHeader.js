@@ -14,19 +14,26 @@ export default class LayHeader extends Component {
     constructor(props) {
         super(props)
         this.props.getDefaultDate(new Date());
+        //console.log(this.props.todos.last())
+        //console.log(this.state.reservations.data.day)
+    }
+
+    componentWillMount() {
         console.log(this.props.todos.last())
+        this.setState({
+            reservations: this.props.todos.last(),
+            dayName: this.getWeekDayNames( new Date(this.props.todos.last())),
+            monthName: this.getWeekDayNames(new Date(this.props.todos.last()))
+        })
     }
 
     handleNext = (e) => {
-        this.props.nextDate(this.props.todos.last());
+        console.log(this.state.reservations);
+        this.props.nextDate(this.state.reservations);
     }
 
     handlePrev = (e) => {
-        this.props.previousDate(this.props.todos.last());
-    }
-
-    handleCalendar= (e) => {
-
+        this.props.previousDate(this.state.reservations);
     }
 
     getWeekDayNames = function(date) {
@@ -45,15 +52,10 @@ export default class LayHeader extends Component {
 
     render() {
 
-        let date = new Date(this.props.todos.last()),
-            day = date.getDate(),
-            weekDay = this.getWeekDayNames(date),
-            month = this.getMonthNames(date) + " " + date.getFullYear();
 
         return (
 
             <div className="LayHeader">
-
                 <div className="LayHeader__main LayHeader_container">
                     <div className="LHcontainer">
                         <div className="LHitem item__l">
@@ -69,8 +71,8 @@ export default class LayHeader extends Component {
                             <div className="LHitem item__la" onClick={this.handlePrev}></div>
                             {/*Tablo day/weekday*/}
                             <div className="LHitem item__de">
-                                <div className="LHcenter__day">{day}</div><br/>
-                                <div className="LHcenter__weekday">{weekDay}</div>
+                                <div className="LHcenter__day" >{this.state.reservations}</div><br/>
+                                <div className="LHcenter__weekday" >{this.state.dayName}</div>
                             </div>
                             {/*Right arrow*/}
                             <div className="LHitem item__ra" onClick={this.handleNext}></div>
@@ -106,7 +108,7 @@ export default class LayHeader extends Component {
 
                 <div className="LayHeader__date LayHeader_container">
                     <div className="LayHeader__arrow">
-                        <span className="LayHeader__currentdate">{month}</span>
+                        <span className="LayHeader__currentdate" >{this.state.monthName}</span>
                     </div>
                 </div>
 

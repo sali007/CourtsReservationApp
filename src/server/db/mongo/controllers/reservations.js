@@ -14,8 +14,11 @@ export function getReservations(req, res) {
             console.log('Error in first query');
             return res.status(500).send('Something went wrong');
         }
-        console.log('Success in query___' + reservations);
-        //res.header('Accept', 'text/json')
+        //console.log('Success in query___' + reservations);
+        res.header('Accept', 'text/json');
+        res.header('Access-Control-Allow-Origin: *');
+        res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
         //let x = res.json(reservations)
         //console.log('Success in query___' + x );
 

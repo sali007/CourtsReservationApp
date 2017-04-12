@@ -8,6 +8,7 @@ import ReactDom from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from '../../routes';
 import { controllers } from '../db'
+import fetchComponentData from '../fetchComponentData';
 
 const userReservationController = controllers && controllers.reservations
 
