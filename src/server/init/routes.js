@@ -50,17 +50,7 @@ export default (app) => {
                 </Provider>
             );
 
-            //res.removeHeader('Content-Encoding');
-            res.setHeader('Content-Type', 'text/html; charset=utf-8')
-            res.setHeader('X-Foo', 'bar');
-            res.writeHead(200, {
-                //'Content-Lendth': Buffer.byteLength(renderHTML(componentHTML)),
-                'Content-Type': 'text/html;charset=utf-8',
-            })
-
-            console.log('index Prerepder Result',renderHTML(componentHTML) )
-
-            console.log('Response Object', 'Аренда теннисных кортов. “еннисный клуб  корона')
+            res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8',})
             return res.end(renderHTML(componentHTML));
 
         })

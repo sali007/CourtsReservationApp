@@ -75,7 +75,7 @@ class LayFooter extends Component {
 
         return (
             <div className="LayFooter">
-                <div className="LayFooter__main">&copy; Аренда теннисных клубов <spam></spam></div>
+                <div className="LayFooter__main">РђСЂРµРЅРґР° С‚РµРЅРЅРёСЃРЅС‹С… РєРѕСЂС‚РѕРІ<spam></spam></div>
             </div>
         );
     }

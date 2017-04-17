@@ -8,7 +8,7 @@
 
 .LayHeader__day {
     position: relative;
-    background: url(https://court-static.korona-tennis.ru/img/tablo.png);
+    background: url(../../../court-static/img/tablo.png);
     background-repeat: no-repeat;
     background-position: center center;
     left: 37%;
@@ -68,7 +68,7 @@
     margin-right: auto;
     width: 320px;
     height: 45px;
-    background: url(https://court-static.korona-tennis.ru/img/arrows.png);
+    background: url(../../../court-static/img/arrows.png);
     background-repeat: no-repeat;
     background-position: center center;
     text-align: center;
@@ -98,7 +98,7 @@
     padding-left: 10px;
     border: 1px solid #36445F;
     border-radius: 10px;
-    background: url(https://court-static.korona-tennis.ru/img/rocket.png);
+    background: url(../../../court-static/img/rocket.png);
     background-repeat: no-repeat;
     background-position: right center;
     text-align: left;
@@ -150,7 +150,7 @@ LHcontainer__sub2 {
     width: 311px;
     height: 158px;
     /* background-color: #dadada; */
-    background: url(https://court-static.korona-tennis.ru/img/club_logo.png);
+    background: url(../../../court-static/img/club_logo.png);
     background-repeat: no-repeat;
 }
 
@@ -171,7 +171,7 @@ LHcontainer__sub2 {
 
 .item__la {
     height: 158px;
-    background: url(https://court-static.korona-tennis.ru/img/arrow1.png);
+    background: url(../../../court-static/img/arrow1.png);
     background-repeat: no-repeat;
     background-position: center center;
     text-align: center;
@@ -230,7 +230,7 @@ LHcontainer__sub2 {
 
 .item__ra {
     height: 158px;
-    background: url(https://court-static.korona-tennis.ru/img/arrow2.png);
+    background: url(../../../court-static/img/arrow2.png);
     background-repeat: no-repeat;
     background-position: center center;
     text-align: center;
@@ -245,7 +245,7 @@ LHcontainer__sub2 {
     right: 26%;
     width: 150px;
     background-color: #dadada;
-    background: url(https://court-static.korona-tennis.ru/img/btn_cal.png);
+    background: url(../../../court-static/img/btn_cal.png);
     background-repeat: no-repeat;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -350,7 +350,7 @@ LHcontainer__sub2 {
 }
 
 LHcenter__user {
-    background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+    background-image: url(../../../court-static/icons/guest.png);
     position: absolute;
     background-repeat: no-repeat;
 }
@@ -591,7 +591,7 @@ LHcenter__user {
         width: 100%;
         height: 204px;
         display: block;
-        background: url(https://court-static.korona-tennis.ru/img/top.png), url(https://court-static.korona-tennis.ru/img/bg_header.png);
+        background: url(../../../court-static/img/top.png), url(../../../court-static/img/bg_header.png);
         background-repeat: no-repeat, repeat;
         background-position: left center, center;
     }
@@ -612,7 +612,7 @@ LHcenter__user {
         width: 100%;
         height: 204px;
         display: block;
-        background: url(https://court-static.korona-tennis.ru/img/bg_header.png);
+        background: url(../../../court-static/img/bg_header.png);
         background-repeat: repeat;
         background-position: center;
     }
@@ -634,7 +634,7 @@ LHcenter__user {
         width: 100%;
         height: 204px;
         display: block;
-        background: url(https://court-static.korona-tennis.ru/img/bg_header.png);
+        background: url(../../../court-static/img/bg_header.png);
         background-repeat: repeat;
         background-position: center;
     }

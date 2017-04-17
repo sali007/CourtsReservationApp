@@ -11,6 +11,10 @@ export default class LayHeader extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isAuthorized: false,
+            userName: 'Гость',
+            userId: 0,
+            userPhone: '',
             currentDate: null,
             day: null,
             weekDay: null,
@@ -56,14 +60,14 @@ export default class LayHeader extends Component {
 
     getWeekDayNames = function(date) {
         date = new Date(date) || new Date
-        let dayNames = ['Sun', 'Mon', 'Tus', 'Wed', 'Thu', 'Fri', 'Sut'],
+        let dayNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чв', 'Пн', 'Сб'],
             days = date.getDay();
         return dayNames[days];
     }
 
     getMonthNames = function(date) {
         date = new Date(date) || new Date();
-        let monthNames = ['January', 'Febrary', 'March', '������', 'May', 'June', 'July', 'August', 'September', 'October', 'Novebmer', 'December'],
+        let monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
             month = date.getMonth();
         return monthNames[month];
     }
@@ -76,7 +80,6 @@ export default class LayHeader extends Component {
 
     render() {
 
-
         return (
 
             <div className="LayHeader">
@@ -84,8 +87,8 @@ export default class LayHeader extends Component {
                     <div className="LHcontainer">
                         <div className="LHitem item__l">
                             <div>
-                                <span className="hadr">���������� ��������, 56</span><br />
-                                <span className="hras">���.+7(4012) 50-78-76</span>
+                                <span className="hadr">Александра Суворова, 56</span><br />
+                                <span className="hras">Ежедневно 06:00-24:00, Тел.+7(4012) 50-78-76</span>
                             </div>
                         </div>
 
@@ -108,22 +111,22 @@ export default class LayHeader extends Component {
                                 <div className=" item__reg_zone">
                                     <div className="icon_guest"></div>
                                     <div className="userId">
-                                        <p>Guest</p>
-                                        <p>00004134</p>
+                                        <p>{this.state.userName}</p>
+                                        {/*<p>{this.state.userId}</p>*/}
                                     </div>
                                 </div>
 
                                 <div className=" item__user_info">
                                     <div className="greeting">
-                                        <p>������, �����!</p>
+                                        <p>Привет, {this.state.userName}!</p>
                                     </div>
 
-                                    <div className="icon_phone"></div>
+                                    {/*<div className="icon_phone"></div>
                                     <div className="phone_num">
-                                        <p>79165412510</p>
-                                    </div>
+                                        <p>{this.state.userPhone}</p>
+                                    </div>*/}
 
-                                    <div className="reglink"><p>�����������</p></div>
+                                    <div className="reglink"><p>Регистрация</p></div>
                                     <div className="rocket"></div>
                                 </div>
                             </div>

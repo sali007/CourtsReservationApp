@@ -19,9 +19,9 @@ class UIRow extends Component {
 
 
     statuses = {
-        holden: 'Rented',
-        free: 'Free',
-        hiden: 'Busy',
+        holden: 'Арендовано',
+        free: 'Свободно',
+        hiden: 'Арендовано на долгий срок',
     }
 
     icons = {
@@ -47,6 +47,7 @@ class UITable extends Component {
 
         this.state = {
             open: false,
+            openErr: false,
             canSubmit: true,
             slot: '',
             hour: '',
@@ -84,25 +85,25 @@ class UITable extends Component {
             console.log('close submitted', this.state);
         } else {
             console.log('close unsubmitted', this.state);
-            this.state.currentUIRowStatus.status = 'free';
             this.setState({
                 open: false,
             });
         }
-        this.forceUpdate();
     }
 
-    show() {
-        console.log('show', this.state);
+    closeErr() {
+        console.log('close err');
         this.setState({
-            open: true,
-        });
+            openErr: false
+        })
     }
 
     showed(slot) {
-
-        slot.status = 'holden'
-
+        if(slot.status == 'holden') {
+            this.setState({
+                openErr: open
+            })
+        } else {
             console.log('show slot', slot);
             this.setState({
                 open: true,
@@ -112,6 +113,7 @@ class UITable extends Component {
                 court: this.state.court,
                 currentUIRowStatus: slot
             });
+        }
     }
     enableButton() {
         this.setState({
@@ -171,11 +173,23 @@ class UITable extends Component {
                     show={this.state.open}
                     onClose={this.close}
                 >
-                    <div className="form__header"> Reserve time </div>
+                    <div className="form__header">Чтобы записаться оставьте свои контактные данные
+                    </div>
                     <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Phone" name="uphone" required/><br/>
-                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Name" name="uname" />
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Напишите телефон для связи с Вами" name="uphone" required/><br/>
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите имя и фамилию" name="uname" />
                         <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
+                    </Formsy.Form>
+                </Modal>
+                <Modal
+                    containerStyle={{ background: 'white', width: '350px', padding: 0, borderRadius:'6px' }}
+                    closeOnOuterClick={true}
+                    show={this.state.openErr}
+                    onClose={this.closeErr}
+                >
+                    <div className="form__header">Извините, но это время уже занято, выберите другое удобное для Вас.</div>
+                    <Formsy.Form onValid={this.enableButton}>
+                        <button className="form__button--submit" type="submit">Ok</button>
                     </Formsy.Form>
                 </Modal>
             </div>
