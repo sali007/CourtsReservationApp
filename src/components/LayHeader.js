@@ -1,54 +1,77 @@
-import React, { Component } from 'react';
-
-import { observer } from 'mobx-react';
-import autobind from 'react-autobind';
-import moment from 'moment';
-import 'moment/locale/ru';
-
+import React, { Component, Proptypes } from 'react';
 import Modal, {closeStyle} from 'simple-react-modal';
-import { DayPicker, constants } from 'react-dates';
+import autobind from 'react-autobind';
+import { observer } from 'mobx-react';
+import { DateField, Calendar } from 'react-date-picker';
 
+import 'react-date-picker/index.css'
 import './css/LayHeaderFlex.css';
 
 export default class LayHeader extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            currentDate: null,
+            day: null,
+            weekDay: null,
+            monthNames: null,
+            open: ''
+        }
         this.props.getDefaultDate(new Date());
-        //console.log(this.props.todos.last())
-        //console.log(this.state.reservations.data.day)
+        autobind(this);
+
     }
 
-    componentWillMount() {
-        console.log(this.props.todos.last())
+    componentWillUpdate(nextProps) {
+        if(this.props !== nextProps) {
+            this.setState({
+                currentDate: nextProps.todos.last().date,
+                day : new Date(nextProps.todos.last().date).getDate(),
+                weekDay: this.getWeekDayNames(nextProps.todos.last().date),
+                monthNames: this.getMonthNames(nextProps.todos.last().date),
+            })
+            console.log('LayHeader ComponentWillUpdate', new Date(nextProps.todos.last().date).toString())
+        }
+    }
 
+    show() {
+       this.setState({
+           open: true
+       })
+    }
+
+    close() {
         this.setState({
-            reservations: this.props.todos.last(),
-            dayName: this.getWeekDayNames( new Date(this.props.todos.last())),
-            monthName: this.getWeekDayNames(new Date(this.props.todos.last()))
-        })
+            open: false,
+        });
     }
 
     handleNext = (e) => {
-        console.log(this.state.reservations);
-        this.props.nextDate(this.state.reservations);
+        this.props.nextDate(this.state.currentDate);
     }
 
     handlePrev = (e) => {
-        this.props.previousDate(this.state.reservations);
+        this.props.previousDate(this.state.currentDate)
     }
 
     getWeekDayNames = function(date) {
-        date = date || new Date();
+        date = new Date(date) || new Date
         let dayNames = ['Sun', 'Mon', 'Tus', 'Wed', 'Thu', 'Fri', 'Sut'],
             days = date.getDay();
         return dayNames[days];
     }
 
     getMonthNames = function(date) {
-        date = date || new Date();
-        let monthNames = ['January', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novebmer', 'December'],
+        date = new Date(date) || new Date();
+        let monthNames = ['January', 'Febrary', 'March', 'Апрель', 'May', 'June', 'July', 'August', 'September', 'October', 'Novebmer', 'December'],
             month = date.getMonth();
         return monthNames[month];
+    }
+
+    onChange = (dateString, {dateMoment, timestamp}) => {
+        console.log('OnChange', dateString)
+        this.props.getDefaultDate(dateString);
+        this.close();
     }
 
     render() {
@@ -71,14 +94,14 @@ export default class LayHeader extends Component {
                             {/*Left arrow*/}
                             <div className="LHitem item__la" onClick={this.handlePrev}></div>
                             {/*Tablo day/weekday*/}
-                            <div className="LHitem item__de">
-                                <div className="LHcenter__day" >{this.state.reservations}</div><br/>
-                                <div className="LHcenter__weekday" >{this.state.dayName}</div>
+                            <div className="LHitem item__de" onClick={this.show}>
+                                <div className="LHcenter__day" >{this.state.day}</div><br/>
+                                <div className="LHcenter__weekday" >{this.state.weekDay}</div>
                             </div>
                             {/*Right arrow*/}
                             <div className="LHitem item__ra" onClick={this.handleNext}></div>
                             </div>
-                        <div className="LHitem item__c" onClick={this.handleCalendar}></div>
+                        <div className="LHitem item__c" onClick={this.show}></div>
 
                         {/*Registration Card*/}
                             <div className="LayHeader_RC">
@@ -109,10 +132,21 @@ export default class LayHeader extends Component {
 
                 <div className="LayHeader__date LayHeader_container">
                     <div className="LayHeader__arrow">
-                        <span className="LayHeader__currentdate" >{this.state.monthName}</span>
+                        <span className="LayHeader__currentdate" >{this.state.monthNames}</span>
                     </div>
                 </div>
-
+                <Modal
+                    containerStyle={{ background: 'white', width: '320px', padding: 0, borderRadius:'6px'}}
+                    closeOnOuterClick={true}
+                    show={this.state.open}
+                    onClose={this.close}
+                >
+                    <Calendar
+                        dateFormat="YYYY-MM-DD"
+                        date={this.state.currentDate}
+                        onChange={this.onChange}
+                    />
+                </Modal>
             </div>
 
 

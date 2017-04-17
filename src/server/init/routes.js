@@ -10,6 +10,7 @@ import routes from '../../routes';
 import { controllers } from '../db'
 import fetchComponentData from '../fetchComponentData';
 
+
 const userReservationController = controllers && controllers.reservations
 
 
@@ -23,7 +24,7 @@ export default (app) => {
 
     if(userReservationController) {
         app.post('/reservation', userReservationController.getReservations);
-        app.post('/add_reserv', userReservationController.add)
+        app.post('/addReservation', userReservationController.add)
     } else {
         console.warn('fail to load controller');
     }
@@ -49,6 +50,17 @@ export default (app) => {
                 </Provider>
             );
 
+            //res.removeHeader('Content-Encoding');
+            /*res.setHeader('Content-Type', 'text/html; charset=windows-1251')
+            res.setHeader('X-Foo', 'bar');
+            res.writeHead(200, {
+                'Content-Lendth': Buffer.byteLength(renderHTML(componentHTML)),
+                'Content-Type': 'text/html',
+            })*/
+
+            console.log('index Prerepder Result',decodeURI(renderHTML(componentHTML)) )
+
+            //console.log('Response Object', res)
             return res.end(renderHTML(componentHTML));
 
         })

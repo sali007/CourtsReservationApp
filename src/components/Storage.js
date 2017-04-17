@@ -8,240 +8,137 @@ const courts = [
     {
         court: 1,
         status: 'ready',
-        date: '16 12 2016',
         data: [
             {
                 _id_: uuid.v4(),
-                timeslot: '06:00 - 07:00',
-                value: 800,
-                status: 'hiden'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '07:00 - 08:00',
+                hour:6,
+                timeslot: '6 - 7',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '08:00 - 09:00',
+                hour:7,
+                timeslot: '7 - 8',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '09:00 - 10:00',
+                hour:8,
+                timeslot: '8 - 9',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '10:00 - 11:00',
+                hour:9,
+                timeslot: '9 - 10',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '11:00 - 12:00',
+                hour:10,
+                timeslot: '10 - 11',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '12:00 - 13:00',
+                hour:11,
+                timeslot: '11 - 12',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '13:00 - 14:00',
+                hour:12,
+                timeslot: '12 - 13',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '14:00 - 15:00',
+                hour:13,
+                timeslot: '13 - 14',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '15:00 - 16:00',
+                hour:14,
+                timeslot: '14 - 15',
+                value: 800,
+                status: 'free'
+            },
+            {
+                _id_: uuid.v4(),
+                hour:15,
+                timeslot: '15 - 16',
                 value: 1100,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '16:00 - 17:00',
+                hour:16,
+                timeslot: '16 - 17',
                 value: 1100,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '17:00 - 18:00',
+                hour:17,
+                timeslot: '17 - 18',
                 value: 1100,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '18:00 - 19:00',
+                hour:18,
+                timeslot: '18 - 19',
                 value: 1100,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '19:00 - 20:00',
+                hour:19,
+                timeslot: '19 - 20',
                 value: 1100,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '20:00 - 21:00',
+                hour:20,
+                timeslot: '20 - 21',
                 value: 1100,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '21:00 - 22:00',
+                hour:21,
+                timeslot: '21 - 22',
                 value: 1100,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '22:00 - 23:00',
+                hour:22,
+                timeslot: '22 - 23',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '23:00 - 24:00',
+                hour:23,
+                timeslot: '23 - 24',
                 value: 800,
                 status: 'free'
             },
             {
                 _id_: uuid.v4(),
-                timeslot: '24:00 - 01:00',
-                value: 800,
-                status: 'free'
-            }
-        ]
-    },
-    {
-        court: 2,
-        status: 'ready',
-        date: '16 12 2016',
-        data: [
-            {
-                _id_: uuid.v4(),
-                timeslot: '06:00 - 07:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '07:00 - 08:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '08:00 - 09:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '09:00 - 10:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '10:00 - 11:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '11:00 - 12:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '12:00 - 13:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '13:00 - 14:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '14:00 - 15:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '15:00 - 16:00',
-                value: 1100,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '16:00 - 17:00',
-                value: 1100,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '17:00 - 18:00',
-                value: 1100,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '18:00 - 19:00',
-                value: 1100,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '19:00 - 20:00',
-                value: 1100,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '20:00 - 21:00',
-                value: 1100,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '21:00 - 22:00',
-                value: 1100,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '22:00 - 23:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '23:00 - 24:00',
-                value: 800,
-                status: 'free'
-            },
-            {
-                _id_: uuid.v4(),
-                timeslot: '24:00 - 01:00',
+                hour:24,
+                timeslot: '24 - 01',
                 value: 800,
                 status: 'free'
             }
@@ -250,9 +147,5 @@ const courts = [
 ];
 
 export const Courts = function (court, stamp) {
-    console.log('courts', court, stamp);
     return courts[court];
-};
-
-export class Store {
 };

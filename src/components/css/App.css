@@ -55,6 +55,7 @@
   align-items: stretch;
 }
 .flexcontainer .UITable{
+	display: table-cell ;
   margin: 2px;
   padding: 5px;
 }

@@ -1,67 +1,53 @@
 import request from 'axios';
 
+
 const URL = 'http://localhost:3001/reservation';
-const BACKEND_URL = 'https://webtask.it.auth0.com/api/run/wt-milomord-gmail_com-0/redux-tutorial-backend?webtask_no_cache=1';
-let dataG;
+const ADD_RESERVATION_URL = 'http://localhost:3001/addReservation';
+
 
 export function nextDate(date) {
-    request.post(URL, { date:date} ).then(response => {
-        dataG =  response.data;
-        //console.log(data);
-    })
+    let d = new Date(date)
+        .setDate(new Date(date).getDate() + 1)
     return {
         type: 'NEXT_DATE',
-        date: new Date(date).getDate() + 1,
-        data: dataG
+        date: d,
+        promise: request.post(URL, { date:d} )
     };
 }
 
 export function previousDate(date) {
-    request.post(URL, { date:date} ).then(response => {
-        dataG =  response.data;
-        //console.log(data);
-    })
+    let d = new Date(date)
+            .setDate(new Date(date).getDate() - 1);
     return {
         type: 'PREVIOUS_DATE',
-        date: new Date(date)
-            .setDate(new Date(date).getDate() - 1),
+        promise: request.post(URL, { date:d} ),
+        date: d
     };
 }
-
 
 export function getDefaultDate(date) {
-
-    //console.log(dataG);
     return {
         type: 'GET_DEFAULT_DATE',
-        date: Date.now(),
-        promise: request.post(URL, { date:date} ).then(response => {
-            dataG =  response.data;
-            //console.log(response);
-        })
+        date: date,
+        promise:request.post(URL, { date:date} )
     }
 }
 
-export function createTodo(text) {
+export function addReserve(id, date, court, userName, userPhone, hour, summ, status) {
     return {
-        type: 'CREATE_TODO',
-        promise: request.post(BACKEND_URL, { text })
+        type: 'ADD_RESERVATION',
+        date: date,
+        promise: request.post( ADD_RESERVATION_URL,
+            {
+               id:id,
+               date: date,
+               court:court,
+               userInfo: userName,
+               userPhone: userPhone,
+               summ: summ,
+               hour: hour,
+               status: status
+            })
     }
-}
-
-export function editTodo(id, text) {
-    return {
-        type: 'EDIT_TODO',
-        id,
-        text,
-        date: Date.now()
-    };
-}
-
-export function deleteTodo(id) {
-    return {
-        type: 'DELETE_TODO',
-        id
-    };
 }
 

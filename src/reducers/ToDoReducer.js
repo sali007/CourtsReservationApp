@@ -10,16 +10,10 @@ export default function todoReducer(state = defaultState, action) {
             return state.concat(action);
 
         case 'GET_DEFAULT_DATE':
-            return state.concat(action.date);
+            return state.concat(action);
 
-        case 'CREATE_TODO':
-            return state.concat(action.date);
-
-        case 'EDIT_TODO':
-            return state.set(action.id, action.text);
-        case 'DELETE_TODO':
-            return state.delete(action.id);
-
+        case 'ADD_RESERVATION':
+            return state.concat(action);
         default:
             return state;
     }

@@ -9,7 +9,6 @@ import { IndexRoute, Router, Route, Link, browserHistory, hashHistory } from 're
 
 import Notfound from './components/Notfound';
 import Layout from './components/Layout';
-import Courts from './components/Courts';
 
 export default (
         <Route path="/" history={browserHistory} component={Layout}>

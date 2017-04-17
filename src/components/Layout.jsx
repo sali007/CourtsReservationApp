@@ -10,14 +10,8 @@ import { IndexRoute, Router, Route, Link, browserHistory, hashHistory } from 're
 import LayHeader from './LayHeader';
 import LayFooter from './LayFooter';
 import UITable from './UITable';
-import TodosForm from './TodosForm';
-import TodosView from './TodosView';
-
-import { Store, Courts } from './Storage';
 
 import './css/App.css';
-
-const store = new Store();
 
 @connect(state => ({ todos: state.todoss }))
 export default class Layout extends Component {
@@ -30,12 +24,10 @@ export default class Layout extends Component {
                 <LayHeader todos={todos}
                            {...bindActionCreators(TodoActions, dispatch)}/>
                 <div className='flexcontainer'>
-                    {/* <TodosView todos={todos}
-                                 {...bindActionCreators(TodoActions, dispatch)} />
-                    <TodosForm
-                        {...bindActionCreators(TodoActions, dispatch)} />*/}
-                    <UITable store={store} data={Courts(0, 327508723875) } />
-                     <UITable store={store} data={Courts(0, 327508723875) } />
+                     <UITable todos={todos}
+                              court={1}
+                              {...bindActionCreators(TodoActions, dispatch)}
+                         />
                 </div>
                 <LayFooter />
             </div>

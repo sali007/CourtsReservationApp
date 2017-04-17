@@ -13,11 +13,15 @@ import Modal, {closeStyle} from 'simple-react-modal';
 import './css/UITable.css';
 
 class UIRow extends Component {
+    constructor(props) {
+        super(props)
+    }
+
 
     statuses = {
-        holden: 'Арендовано',
-        free: 'Свободно',
-        hiden: 'Занято',
+        holden: 'Rented',
+        free: 'Free',
+        hiden: 'Busy',
     }
 
     icons = {
@@ -28,10 +32,10 @@ class UIRow extends Component {
 
     render() {
         return (
-            <tr>
-                <th></th>
-                <td></td>
-                <td className="UIclear"><div/></td>
+            <tr className={this.props.data.status} onClick={this.props.showed.bind(null, this.props.data)}>
+                <th>{this.props.data.timeslot}</th>
+                <td>{this.props.data.value}  {this.statuses[this.props.data.status]}</td>
+                <td className="UIclear"><div className={this.icons[this.props.data.status]} /></td>
             </tr>
         );
     }
@@ -45,32 +49,157 @@ class UITable extends Component {
             open: false,
             canSubmit: true,
             slot: '',
+            hour: '',
+            value: '',
+            court: '',
+            _id: 0,
+            date: Date.now(),
+            schedule: null,
+            currentUIRowStatus: null,
         };
         autobind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+
+        if(this.props !== nextProps) {
+
+                console.log('UITABLE ComponentWillReceiveProps Received', nextProps.todos.last().res.data);
+                this.setState({
+                    _id: nextProps.todos.last().res.data._id,
+                    date: nextProps.todos.last().date,
+                    schedule: nextProps.todos.last().res.data.data,
+                    court: nextProps.court
+                })
+            console.log('Court number',nextProps.court)
+        }
+    }
+
+    close(submitted) {
+        console.log('close', submitted)
+        if(submitted == true) {
+            this.setState({
+                open: false,
+            });
+            console.log('close submitted', this.state);
+        } else {
+            console.log('close unsubmitted', this.state);
+            this.state.currentUIRowStatus.status = 'free';
+            this.setState({
+                open: false,
+            });
+        }
+        this.forceUpdate();
+    }
+
+    show() {
+        console.log('show', this.state);
+        this.setState({
+            open: true,
+        });
+    }
+
+    showed(slot) {
+
+        slot.status = 'holden'
+
+            console.log('show slot', slot);
+            this.setState({
+                open: true,
+                slot: slot.timeslot,
+                hour: slot.hour,
+                value: slot.value,
+                court: this.state.court,
+                currentUIRowStatus: slot
+            });
+    }
+    enableButton() {
+        this.setState({
+            canSubmit: true
+        });
+    }
+    disableButton() {
+        this.setState({
+            canSubmit: false
+        });
+    }
+    submit(model) {
+        this.setState({
+            currentUIRowStatus: this.state.currentUIRowStatus.status = 'holden'
+        })
+
+        this.props.addReserve(
+            this.state._id,
+            this.state.date,
+            this.state.court,
+            model.uname,
+            model.uphone,
+            this.state.hour,
+            this.state.value,
+            this.state.currentUIRowStatus.status
+        )
+        this.close(true);
+    }
     render() {
+
         const _this = this;
-        let currentDate = this.props.store.currentDateDay;
+
         return (
             <div className="UITable">
                 <table className="ui compact unstackable table">
                     <thead>
                     <tr>
                         <th><div className="UIpic__time"></div></th>
-                        <td><div className="UIpic__cord"><div className="UIpic__num" >{this.props.data.court}</div></div></td>
+                        <td><div className="UIpic__cord"><div className="UIpic__num" >{this.state.court}</div></div></td>
                         <td></td>
                     </tr>
                     </thead>
                     <tbody>
-                    {_.map(this.props.data.data, function (object, i) {
-                        return <UIRow showed={_this.showed} data={object} key={object._id_} />;
-                    }) }
+
+                    {_.map(this.state.schedule, function (object, i) {
+                        return <UIRow showed={_this.showed}
+                                          data={object}
+                                          key={object._id_}
+                                          />;
+                    })
+                    }
                     </tbody>
                 </table>
+                <Modal
+                    containerStyle={{ background: 'white', width: '350px', padding: 0, borderRadius:'6px' }}
+                    closeOnOuterClick={true}
+                    show={this.state.open}
+                    onClose={this.close}
+                >
+                    <div className="form__header"> Reserve time </div>
+                    <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Phone" name="uphone" required/><br/>
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Name" name="uname" />
+                        <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
+                    </Formsy.Form>
+                </Modal>
             </div>
         );
     }
 }
+
+const MyOwnInput = React.createClass({
+    mixins: [Formsy.Mixin],
+    changeValue(event) {
+        this.setValue(event.currentTarget.value);
+    },
+
+    render() {
+        const className = this.showRequired() ? 'required' : this.showError() ? 'error' : null;
+        const errorMessage = this.getErrorMessage();
+        const defStyle = className + ' ' + this.props.defStyle;
+        return (
+            <div className={defStyle}>
+                <input autoFocus={this.props.autoFocus} type="text" placeholder={this.props.placeholder} onChange={this.changeValue} value={this.getValue() }/>
+                <div>{errorMessage}</div>
+            </div>
+        );
+    }
+});
 
 export default UITable;
