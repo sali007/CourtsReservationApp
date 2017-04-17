@@ -36,11 +36,11 @@ export default (app) => {
                 res.redirect(301, redirectLocation.pathname + redirectLocation.search);
             }
 
-            if (error) { // Произошла ошибка любого рода
+            if (error) { // С•СЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° Р»СЋР±РѕРіРѕ СЂРѕРґР°
                 return res.status(500).send(error.message);
             }
 
-            if (!props) { // мы не определили путь, который бы подошел для URL
+            if (!props) { // РјС‹ РЅРµ РѕРїСЂРµРґРµР»РёР»Рё РїСѓС‚СЊ, РєРѕС‚РѕСЂС‹Р№ Р±С‹ РїРѕРґРѕС€РµР» РґР»в‚¬ URL
                 return res.status(404).send('Not found\n');
             }
 
@@ -51,16 +51,16 @@ export default (app) => {
             );
 
             //res.removeHeader('Content-Encoding');
-            /*res.setHeader('Content-Type', 'text/html; charset=windows-1251')
+            res.setHeader('Content-Type', 'text/html; charset=utf-8')
             res.setHeader('X-Foo', 'bar');
             res.writeHead(200, {
-                'Content-Lendth': Buffer.byteLength(renderHTML(componentHTML)),
-                'Content-Type': 'text/html',
-            })*/
+                //'Content-Lendth': Buffer.byteLength(renderHTML(componentHTML)),
+                'Content-Type': 'text/html;charset=utf-8',
+            })
 
-            console.log('index Prerepder Result',decodeURI(renderHTML(componentHTML)) )
+            console.log('index Prerepder Result',renderHTML(componentHTML) )
 
-            //console.log('Response Object', res)
+            console.log('Response Object', 'РђСЂРµРЅРґР° С‚РµРЅРЅРёСЃРЅС‹С… РєРѕСЂС‚РѕРІ. вЂњРµРЅРЅРёСЃРЅС‹Р№ РєР»СѓР± В РєРѕСЂРѕРЅР°')
             return res.end(renderHTML(componentHTML));
 
         })
@@ -74,7 +74,7 @@ function renderHTML(componentHTML) {
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Аренда теннисных кортов. Теннисный клуб Корона</title>
+  <title>РђСЂРµРЅРґР° С‚РµРЅРЅРёСЃРЅС‹С… РєРѕСЂС‚РѕРІ. вЂњРўРµРЅРЅРёСЃРЅС‹Р№ РєР»СѓР± РљРѕСЂРѕРЅР°</title>
   <link href="${assetUrl}/css/sui.css" rel="stylesheet">
   <link rel="stylesheet" href="${assetUrl}/public/assets/styles.css">
   <script>

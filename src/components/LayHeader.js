@@ -84,8 +84,8 @@ export default class LayHeader extends Component {
                     <div className="LHcontainer">
                         <div className="LHitem item__l">
                             <div>
-                                <span className="hadr">Alexandra Suvorova, 56</span><br />
-                                <span className="hras">tel.+7(4012) 50-78-76</span>
+                                <span className="hadr">Александра Суворова, 56</span><br />
+                                <span className="hras">тел.+7(4012) 50-78-76</span>
                             </div>
                         </div>
 
@@ -115,7 +115,7 @@ export default class LayHeader extends Component {
 
                                 <div className=" item__user_info">
                                     <div className="greeting">
-                                        <p>Hello Guest!</p>
+                                        <p>Привет, Гость!</p>
                                     </div>
 
                                     <div className="icon_phone"></div>
@@ -123,7 +123,7 @@ export default class LayHeader extends Component {
                                         <p>79165412510</p>
                                     </div>
 
-                                    <div className="reglink"><p>Registration</p></div>
+                                    <div className="reglink"><p>Регистрация</p></div>
                                     <div className="rocket"></div>
                                 </div>
                             </div>
