@@ -1,7 +1,9 @@
 import reservations from './reservations';
+import users from './user';
 
-export { reservations };
+export { reservations, users };
 
 export default  {
-    reservations
+    reservations,
+    users
 }

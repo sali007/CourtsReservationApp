@@ -1,12 +1,14 @@
 /* UITable */
 
+
 .UITable {
     color: #36445E  !important;
 }
-.UITable tbody, .UITable thead,  .UITable table, {
+.UITable tbody, .UITable thead,  .UITable table {
     border: none !important;
     border-bottom: none !important;
     box-shadow: none !important;
+    width: 360px;
 }
 .UITable thead tr {
     border: none !important;
@@ -26,13 +28,15 @@
     border-bottom: 2px solid #ffffff !important;
     background-color: #36445E !important;
     color: #ffffff  !important;
+    border-right: 0px solid #36445E !important;
 }
 
-/*
-.UITable thead tr:last-child {
+
+.UITable thead tr td:last-child {
     text-align: center !important;
+    border-left: 0px solid #36445E !important;
 }
-*/
+
 .UITable tbody tr {
     background-color: #8CDF85 !important;
     border: none !important;
@@ -70,6 +74,7 @@
     color: #36445E  !important;
     box-shadow: none !important;
 }
+
 .UITable tbody tr td {
     border-bottom: 2px solid #ffffff !important;
     color: #36445E  !important;
@@ -94,7 +99,7 @@
     display: inline-block;
     width: 40px;
     height: 40px;
-    background: url(https://court-static.korona-tennis.ru/icons/time.png);
+    background: url(../../../court-static/icons/time.png);
     background-repeat: no-repeat;
     background-position: center center;
     text-align: left;
@@ -105,12 +110,14 @@
     display: inline-block;
     width: 80px;
     height: 40px;
-    background: url(https://court-static.korona-tennis.ru/icons/cord.png);
+    background: url(../../../court-static/icons/cord.png);
     background-repeat: no-repeat;
     background-position: left center;
     text-align: right;
     line-height: 32px;
     padding-top: 4px;
+    margin: 0px;
+    padding-right: 0px;
 }
 .UIpic__num {
     display: inline-block;
@@ -128,7 +135,7 @@
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url(https://court-static.korona-tennis.ru/icons/leased.png);
+    background: url(../../../court-static/icons/leased.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -145,7 +152,7 @@
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url(https://court-static.korona-tennis.ru/icons/playball.png);
+    background: url(../../../court-static/icons/playball.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -187,7 +194,7 @@
   background-color: #ffffff;
   border: 1px solid #DEDDD9;
   border-radius: 4px;
-  background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+  background-image: url(../../../court-static/icons/guest.png);
   background-repeat: no-repeat;
   background-position: 2% center;
 }
@@ -202,7 +209,7 @@
   background-color: #ffffff;
   border: 1px solid #DEDDD9;
   border-radius: 4px;
-  background-image: url(https://court-static.korona-tennis.ru/icons/tel.png);
+  background-image: url(../../../court-static/icons/tel.png);
   background-repeat: no-repeat;
   background-position: 2% center;
 }
@@ -217,7 +224,7 @@
   background-color: #ffffff;
   border: 1px solid #DEDDD9;
   border-radius: 4px;
-  background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+  background-image: url(../../../court-static/icons/guest.png);
   background-repeat: no-repeat;
   background-position: 2% center;
 }
@@ -232,7 +239,7 @@
   background-color: #ffffff;
   border: 1px solid #DEDDD9;
   border-radius: 4px;
-  background-image: url(https://court-static.korona-tennis.ru/icons/guest.png);
+  background-image: url(../../../court-static/icons/guest.png);
   background-repeat: no-repeat;
   background-position: 2% center;
 }

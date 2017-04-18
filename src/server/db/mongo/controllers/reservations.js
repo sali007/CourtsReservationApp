@@ -77,8 +77,8 @@ export function add(req, res) {
             hour:req.body.hour,
             date: date,
             court: req.body.date,
-            userInfo: req.body.userInfo,
-            userPhone: req.body.userPhone,
+            userName: req.body.userInfo,
+            phone: req.body.userPhone,
             summ: req.body.summ,
             status: 'holden'
         }

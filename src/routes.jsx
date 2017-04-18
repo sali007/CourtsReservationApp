@@ -14,5 +14,7 @@ export default (
         <Route path="/" history={browserHistory} component={Layout}>
             <IndexRoute component={Layout} />
             <Route path="/reservation" component={Layout}/>
+            <Route path="/register" component={Layout}/>
+            <Route path="/login" component={Layout}/>
         </Route>
 )

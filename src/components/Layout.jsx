@@ -12,6 +12,8 @@ import LayFooter from './LayFooter';
 import UITable from './UITable';
 
 import './css/App.css';
+import './css/index.css';
+import './css/RD.css';
 
 @connect(state => ({ todos: state.todoss }))
 export default class Layout extends Component {
@@ -28,6 +30,10 @@ export default class Layout extends Component {
                               court={1}
                               {...bindActionCreators(TodoActions, dispatch)}
                          />
+                    <UITable todos={todos}
+                             court={1}
+                             {...bindActionCreators(TodoActions, dispatch)}
+                    />
                 </div>
                 <LayFooter />
             </div>

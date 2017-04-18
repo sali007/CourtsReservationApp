@@ -134,8 +134,8 @@ class UITable extends Component {
             this.state._id,
             this.state.date,
             this.state.court,
-            model.uname,
-            model.uphone,
+            model.userName,
+            model.phone,
             this.state.hour,
             this.state.value,
             this.state.currentUIRowStatus.status
@@ -176,8 +176,8 @@ class UITable extends Component {
                     <div className="form__header">Чтобы записаться оставьте свои контактные данные
                     </div>
                     <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Напишите телефон для связи с Вами" name="uphone" required/><br/>
-                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите имя и фамилию" name="uname" />
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Напишите телефон для связи с Вами" name="phone" required/><br/>
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите имя и фамилию" name="userName" />
                         <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
                     </Formsy.Form>
                 </Modal>

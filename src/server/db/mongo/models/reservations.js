@@ -8,8 +8,8 @@ const ReservationsSchema = new mongoose.Schema({
     reservation: [{
         hour: Number,
         date: String,
-        userInfo: String,
-        userPhone: Number,
+        userName: String,
+        phone: Number,
         summ: Number,
         status: String
     }]

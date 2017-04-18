@@ -11,7 +11,8 @@ import { controllers } from '../db'
 import fetchComponentData from '../fetchComponentData';
 
 
-const userReservationController = controllers && controllers.reservations
+const userReservationController = controllers && controllers.reservations;
+const userAuthController = controllers && controllers.users;
 
 
 const reducer = combineReducers(reducers);
@@ -27,6 +28,11 @@ export default (app) => {
         app.post('/addReservation', userReservationController.add)
     } else {
         console.warn('fail to load controller');
+    }
+
+    if(userAuthController) {
+        app.post('/login', userAuthController.checkUser);
+        app.post('/register', userAuthController.createUser)
     }
 
     app.get('/', (req, res) => {

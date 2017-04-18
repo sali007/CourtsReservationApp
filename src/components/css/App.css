@@ -55,9 +55,8 @@
   align-items: stretch;
 }
 .flexcontainer .UITable{
-	display: table-cell ;
-  margin: 2px;
-  padding: 5px;
+	display: inline-block;
+    margin: 2px;
 }
 
 @media screen and (max-width: 4900px) {

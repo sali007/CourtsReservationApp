@@ -4,7 +4,7 @@
     width: 100%;
     height: 116px;
     display: block;
-    background: url(https://court-static.korona-tennis.ru/img/bottom.png);
+    background: url(../../../court-static/img/bottom.png);
     background-repeat: no-repeat;
     background-position: right center;
     background-color: #D0CDC5;

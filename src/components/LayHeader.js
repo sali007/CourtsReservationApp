@@ -125,8 +125,8 @@ export default class LayHeader extends Component {
                                     <div className="phone_num">
                                         <p>{this.state.userPhone}</p>
                                     </div>*/}
-
-                                    <div className="reglink"><p>Регистрация</p></div>
+                                    <div className="reglink"><a>Вход</a></div><br/>
+                                    <div className="reglink"><a>Регистрация</a></div>
                                     <div className="rocket"></div>
                                 </div>
                             </div>
