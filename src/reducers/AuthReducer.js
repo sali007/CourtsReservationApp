@@ -2,7 +2,7 @@ import { List } from 'immutable';
 
 const defaultState = new List();
 
-export default function todoReducer(state = defaultState, action) {
+export default function AuthReducer(state = defaultState, action) {
     switch(action.type) {
         case 'NEXT_DATE':
             return state.concat(action);
