@@ -1,12 +1,12 @@
 import React from 'react';
-import * as reducers from '../../reducers';
+import * as reducers from '../../src/reducers';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import promiseMiddleware from '../../middleware/promiseMiddleware';
+import promiseMiddleware from '../../src/middleware/promiseMiddleware';
 
 import ReactDom from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import routes from '../../routes';
+import routes from '../../src/routes';
 import { controllers } from '../db'
 import fetchComponentData from '../fetchComponentData';
 

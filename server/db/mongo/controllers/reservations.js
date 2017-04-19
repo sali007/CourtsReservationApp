@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import Reservation from '../models/reservations';
-import { Courts } from '../../../../components/Storage';
+import { Courts } from '../../../../src/components/Storage';
 
 function courtForming(reservations) {
     console.log('Get reservations result', reservations)

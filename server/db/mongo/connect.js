@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import db from '../../../../config/db'
+import db from '../../../config/db'
 import loadModels from './models'
 
 
