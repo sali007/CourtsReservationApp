@@ -1,1 +1,8 @@
-export { default as todoss } from './ToDoReducer'
+import todoss from './ToDoReducer';
+import auth from './AuthReducer'
+
+export {
+    todoss,
+    auth
+}
+

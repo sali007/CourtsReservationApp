@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { bindActionCreators } from 'redux'
 import * as TodoActions from '../actions/ToDoActions';
+import * as AuthAction from '../actions/AuthActions';
 import { connect } from 'react-redux'
 
 import { observer } from 'mobx-react';
@@ -15,23 +16,28 @@ import './css/App.css';
 import './css/index.css';
 import './css/RD.css';
 
-@connect(state => ({ todos: state.todoss }))
+@connect(state => ({
+    todos: state.todoss,
+    auth: state.auth
+}))
 export default class Layout extends Component {
 
     render() {
-        const { todos, dispatch } = this.props;
+        const { todos, auth, dispatch } = this.props;
 
         return (
             <div className="App">
                 <LayHeader todos={todos}
-                           {...bindActionCreators(TodoActions, dispatch)}/>
+                           auth={auth}
+                           {...bindActionCreators(TodoActions, dispatch)}
+                           {...bindActionCreators(AuthAction, dispatch)}/>
                 <div className='flexcontainer'>
                      <UITable todos={todos}
                               court={1}
                               {...bindActionCreators(TodoActions, dispatch)}
                          />
                     <UITable todos={todos}
-                             court={1}
+                             court={2}
                              {...bindActionCreators(TodoActions, dispatch)}
                     />
                 </div>

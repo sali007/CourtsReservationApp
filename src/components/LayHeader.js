@@ -3,6 +3,7 @@ import Modal, {closeStyle} from 'simple-react-modal';
 import autobind from 'react-autobind';
 import { observer } from 'mobx-react';
 import { DateField, Calendar } from 'react-date-picker';
+import Formsy from 'formsy-react';
 
 import 'react-date-picker/index.css'
 import './css/LayHeaderFlex.css';
@@ -19,10 +20,14 @@ export default class LayHeader extends Component {
             day: null,
             weekDay: null,
             monthNames: null,
-            open: ''
+            open: false,
+            loginOpen: false
+
         }
         this.props.getDefaultDate(new Date());
         autobind(this);
+
+        console.log('Props log', this.props)
 
     }
 
@@ -48,6 +53,18 @@ export default class LayHeader extends Component {
         this.setState({
             open: false,
         });
+    }
+
+    loginFormOpen() {
+        this.setState({
+            loginOpen: true
+        })
+    }
+
+    loginFormClose() {
+        this.setState({
+            loginOpen: false
+        })
     }
 
     handleNext = (e) => {
@@ -125,7 +142,7 @@ export default class LayHeader extends Component {
                                     <div className="phone_num">
                                         <p>{this.state.userPhone}</p>
                                     </div>*/}
-                                    <div className="reglink"><a>Вход</a></div><br/>
+                                    <div className="reglink" onClick={this.loginFormOpen}>Вход</div><br/>
                                     <div className="reglink"><a>Регистрация</a></div>
                                     <div className="rocket"></div>
                                 </div>
@@ -139,7 +156,7 @@ export default class LayHeader extends Component {
                     </div>
                 </div>
                 <Modal
-                    containerStyle={{ background: 'white', width: '320px', padding: 0, borderRadius:'6px'}}
+                    containerStyle={{ background: 'white', width: '325px',height: '300px', padding: 2, borderRadius:'6px'}}
                     closeOnOuterClick={true}
                     show={this.state.open}
                     onClose={this.close}
@@ -150,10 +167,43 @@ export default class LayHeader extends Component {
                         onChange={this.onChange}
                     />
                 </Modal>
+                {/*<Modal
+                    containerStyle={{ background: 'white', width: '345px',height: '200px', padding: 2, borderRadius:'6px'}}
+                    closeOnOuterClick={true}
+                    show={this.state.loginOpen}
+                    onClose={this.loginFormClose}
+                >
+                    <div className="form__header">Введите логин и пароль
+                    </div>
+                    <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите логин" name="userName" required/><br/>
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" />
+                        <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
+                    </Formsy.Form>
+                </Modal>*/}
             </div>
 
 
         );
     }
 }
+
+{/*const MyOwnInput = React.createClass({
+    mixins: [Formsy.Mixin],
+    changeValue(event) {
+        this.setValue(event.currentTarget.value);
+    },
+
+    render() {
+        const className = this.showRequired() ? 'required' : this.showError() ? 'error' : null;
+        const errorMessage = this.getErrorMessage();
+        const defStyle = className + ' ' + this.props.defStyle;
+        return (
+            <div className={defStyle}>
+                <input autoFocus={this.props.autoFocus} type="text" placeholder={this.props.placeholder} onChange={this.changeValue} value={this.getValue() }/>
+                <div>{errorMessage}</div>
+            </div>
+        );
+    }
+});*/}
 
