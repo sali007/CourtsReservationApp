@@ -11,17 +11,12 @@ export default (app) => {
     app.use(session({
         secret: 'lovely secret!',
         resave: false,
-        saveUnitialized: false,
+        //saveUnitialized: false,
         store: new MongoStore({
             url : "mongodb://nikfed1:1127215@ds147480.mlab.com:47480/notes"
         })
     }))
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}))
-
-
-
-
-
+    app.use(bodyParser.urlencoded({extended: true}));
 
 }
