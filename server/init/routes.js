@@ -71,8 +71,8 @@ function renderHTML(componentHTML) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Аренда теннисных кортов. “Теннисный клуб Корона</title>
-  <link href="${assetUrl}/css/sui.css" rel="stylesheet">
-  <link rel="stylesheet" href="${assetUrl}/public/assets/styles.css">
+  <link href="//css/sui.css" rel="stylesheet">
+  <link rel="stylesheet" href="//public/assets/styles.css">
   <script>
 	  window._secure_vision_='user';
       window._crd_= '';
@@ -82,7 +82,7 @@ function renderHTML(componentHTML) {
 
 <body>
   <div id="root">${componentHTML}</div>
-  <script type="application/javascript" src="${assetUrl}/public/assets/bundle.js"></script>
+  <script type="application/javascript" src="//public/assets/bundle.js"></script>
 </body>
 
 </html>
