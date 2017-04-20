@@ -56,6 +56,7 @@ export default (app) => {
                 </Provider>
             );
 
+            res.setHeader('Access-Control-Allow-Origin', '*')
             res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8',})
             return res.end(renderHTML(componentHTML));
 
