@@ -18,7 +18,7 @@ const userAuthController = controllers && controllers.users;
 const reducer = combineReducers(reducers);
 const store = applyMiddleware(promiseMiddleware)(createStore)(reducer);
 const initialState = store.getState();
-const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://95.85.13.42:8080' : '/';
+const assetUrl = process.env.NODE_ENV !== 'production' ? '/' : '/';
 
 
 export default (app) => {
