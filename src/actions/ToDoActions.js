@@ -1,7 +1,7 @@
 import request from 'axios';
 
 
-const URL = 'https://95.85.13.42:8080/reservation';
+const URL = 'http://95.85.13.42:8080/reservation';
 const ADD_RESERVATION_URL = '/addReservation';
 
 
