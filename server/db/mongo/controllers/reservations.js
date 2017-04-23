@@ -56,13 +56,19 @@ export function getReservations(req, res) {
             return res.status(500).send('Something went wrong');
         }
 
-
+        res.header('Access-Control-Allow-Methods', 'POST,GET,OPTION')
+        res.header('Access-Control-Allow-Origin', '*');
+        res.writeHead(200, {
+            'Content-Type': 'text/html;charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+        })
 
         console.log('Success in query___getReservations ');
-        res.header('Accept', 'text/json');
+        /*res.header('Accept', 'text/json');
         res.header('Access-Control-Allow-Origin: *');
         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-        res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+        res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');*/
         console.log(res)
 
         res.json(courtForming(reservations));
