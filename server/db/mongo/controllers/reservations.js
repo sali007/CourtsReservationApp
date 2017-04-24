@@ -70,9 +70,10 @@ export function getReservations(req, res) {
         res.header('Access-Control-Allow-Origin: *');
         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
         res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');*/
-        console.log('Headers', res)
-
-        res.json(courtForming(reservations));
+        console.log('Headers req', req);
+        console.log('Headers res', res);
+         res.end('ok')
+        //res.json(courtForming(reservations));
     })
 }
 
