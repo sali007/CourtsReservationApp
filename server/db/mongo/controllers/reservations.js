@@ -58,6 +58,7 @@ export function getReservations(req, res) {
 
         res.header('Access-Control-Allow-Methods', 'POST,GET,OPTION')
         res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Origin-Headers', 'Origin, Content-Type, Accept');
         /*res.writeHead(200, {
             'Content-Type': 'text/html;charset=utf-8',
             'Access-Control-Allow-Origin': '*',
@@ -69,7 +70,7 @@ export function getReservations(req, res) {
         res.header('Access-Control-Allow-Origin: *');
         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
         res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');*/
-        console.log(res)
+        console.log('Headers', res.headers)
 
         res.json(courtForming(reservations));
     })
