@@ -58,11 +58,11 @@ export default (app) => {
 
             res.header('Access-Control-Allow-Methods', 'POST,GET,OPTION')
             res.header('Access-Control-Allow-Origin', '*');
-            res.writeHead(200, {
+            /*res.writeHead(200, {
                 'Content-Type': 'text/html;charset=utf-8',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
-            })
+            })*/
             console.log()
             return res.end(renderHTML(componentHTML));
 
