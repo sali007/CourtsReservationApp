@@ -9,7 +9,7 @@ const MongoStore = require('connect-mongo')(session);
 
 export default (app) => {
 
-    app.use(cors());
+    //app.use(cors());
     app.set('port', (process.env.PORT || 3001));
     app.use(cookieParser());
     app.use(session({
