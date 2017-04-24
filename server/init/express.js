@@ -1,13 +1,15 @@
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import cors from 'cors';
+import  cors  from 'cors';
+
+
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 export default (app) => {
 
-    app.use(cors);
+    app.use(cors());
     app.set('port', (process.env.PORT || 3001));
     app.use(cookieParser());
     app.use(session({
@@ -20,6 +22,5 @@ export default (app) => {
     }))
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
-    app.setHe
 
 }
