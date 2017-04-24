@@ -1,7 +1,7 @@
 import request from 'axios';
 
 
-const URL = 'http://localhost:80/reservation';
+const URL = '/reservation';
 const ADD_RESERVATION_URL = '/addReservation';
 
 
