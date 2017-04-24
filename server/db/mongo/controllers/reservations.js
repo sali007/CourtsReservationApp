@@ -72,8 +72,7 @@ export function getReservations(req, res) {
         res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');*/
         console.log('Headers req', req);
         console.log('Headers res', res);
-         res.end('ok')
-        //res.json(courtForming(reservations));
+        res.json(courtForming(reservations));
     })
 }
 
