@@ -3,21 +3,21 @@ import Reservation from '../models/reservations';
 import { Courts } from '../../../../src/components/Storage';
 
 function courtForming(reservations) {
-    console.log('Get reservations result', reservations)
+    console.log('Get reservations result')
     let courtOrigin = Courts(0),
         court = JSON.stringify(courtOrigin);
         court = JSON.parse(court);
         courtOrigin = null;
     let reserve = reservations[0] == undefined ? reservations : reservations[0];
 
-    console.log('Default court', court)
+    console.log('Default court')
     if(reserve == undefined || reserve.reservation == undefined) {
         let date = new Date();
             court.day = date.getDate(),
             court.month = date.getMonth(),
             court.year = date.getFullYear(),
             court._id = 0;
-        console.log('Empty object. Default is defined', reserve, reservations)
+        console.log('Empty object. Default is defined')
         return court;
     }
     court.court = reserve.court;
@@ -36,7 +36,7 @@ function courtForming(reservations) {
         })
     })
 
-    console.log('Reservation schedule for ' + court.day + '.' + court.month, court)
+    console.log('Reservation schedule for ' + court.day + '.' + court.month)
     return court;
 }
 
@@ -70,7 +70,7 @@ export function getReservations(req, res) {
         res.header('Access-Control-Allow-Origin: *');
         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
         res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');*/
-        console.log('Headers', res.headers)
+        console.log('Headers', res)
 
         res.json(courtForming(reservations));
     })
