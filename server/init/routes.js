@@ -18,7 +18,7 @@ const userAuthController = controllers && controllers.users;
 const reducer = combineReducers(reducers);
 const store = applyMiddleware(promiseMiddleware)(createStore)(reducer);
 const initialState = store.getState();
-const assetUrl = process.env.NODE_ENV !== 'production' ? '/' : '/';
+const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://95.85.13.42/' : '/';
 
 
 export default (app) => {
@@ -79,7 +79,7 @@ function renderHTML(componentHTML) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Аренда теннисных кортов. “Теннисный клуб Корона</title>
   <link href="/css/sui.css" rel="stylesheet">
-  <link rel="stylesheet" href="/public/assets/styles-78026d512023269d76c4.css">
+  <link rel="stylesheet" href="http://localhost:8080/public/assets/styles.css">
   <script>
 	  window._secure_vision_='user';
       window._crd_= '';
@@ -89,7 +89,7 @@ function renderHTML(componentHTML) {
 
 <body>
   <div id="root">${componentHTML}</div>
-  <script type="application/javascript" src="/public/assets/bundle-78026d512023269d76c4.js"></script>
+  <script type="application/javascript" src="http://localhost:8080/public/assets/bundle.js"></script>
 </body>
 
 </html>
