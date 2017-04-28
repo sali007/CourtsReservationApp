@@ -18,7 +18,7 @@ const userAuthController = controllers && controllers.users;
 const reducer = combineReducers(reducers);
 const store = applyMiddleware(promiseMiddleware)(createStore)(reducer);
 const initialState = store.getState();
-const assetUrl = process.env.NODE_ENV !== 'production' ? '/' : '/';
+const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8080/' : '/';
 
 
 export default (app) => {
@@ -31,8 +31,12 @@ export default (app) => {
     }
 
     if(userAuthController) {
-        app.post('/login', userAuthController.checkUser);
-        app.post('/register', userAuthController.createUser)
+        app.post('/login', userAuthController.login);
+        app.post('/register', userAuthController.register);
+        app.get('/logout', userAuthController.logout);
+
+        app.all('/admin', userAuthController.mustAuthenticateedMw);
+        app.all('/admin/*', userAuthController.mustAuthenticateedMw);
     }
 
     app.get('/', (req, res) => {

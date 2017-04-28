@@ -1,7 +1,52 @@
 import User from '../models/user';
 import Crypto from 'crypto';
+import passport from 'passport';
 
-function createUser(req, res) {
+function login(req, res, next) {
+    passport.authenticate('local',
+        function(err, user, info) {
+            return err
+                ? next(err)
+                : user
+                    ? req.logIn(user, function(err) {
+                        return err
+                            ? next(err)
+                            : res.redirect('/private');
+                    })
+                    : res.redirect('/');
+        }
+    )(req, res, next);
+};
+
+function register(req, res, next) {
+  var user = new User({
+      userName: req.body.data.userName,
+      password: req.body.data.password
+  });
+  user.save(function(err) {
+      return err
+         ? next(err)
+          : req.login(user, function(err) {
+              return err
+                 ? next(err)
+                  : res.redirect('/admin')
+          });
+  });
+};
+
+function logout(req, res) {
+    req.logout();
+    res.redirect('/');
+}
+
+function mustAuthenticateedMw(req, res, next) {
+    req.isAuthenticated()
+       ? next()
+        : res.status(500)
+    //res.redirect('/');
+}
+
+/*function createUser(req, res) {
 
     console.log('Create user request', req.body)
 
@@ -26,16 +71,19 @@ function getUser(id) {
 function checkUser(req, res) {
 
     console.log('Check user request', req.body)
-    var h = hash(req.body.password)
+    var h = hash(req.body.data.password)
     console.log('Your pass ',h)
-    //if(req.session.user) return res.redirect('/register')
+    if(req.session.user) return res.redirect('/')
     return User.findOne({
-        phone: req.body.phone
+        userName: req.body.data.userName
        }).exec((err, doc) => {
         console.log('response',doc)
-        if (doc.password == hash(req.body.password)) {
-            console.log('User password is Ok');
-        } else {
+
+        if(doc != null) {
+            if (doc.password == hash(req.body.data.password)) {
+                console.log('User password is Ok');
+            }
+        }else {
             return Promise.reject('Error. Wrong Password')
         }
     }).then(function (user) {
@@ -45,10 +93,9 @@ function checkUser(req, res) {
                 name: user.name
             }
             return res.redirect('/')
-           retunr
         } else {
             console.log('Error Check user');
-            res.status(400).send('Auth Error')
+            res.status(400).send('Ошибка авторизации')
         }
     })
 }
@@ -56,10 +103,11 @@ function checkUser(req, res) {
 function hash(text) {
     return Crypto.createHash('sha1')
         .update(text).digest('base64')
-}
+}*/
 
 export default {
-    createUser,
-    getUser,
-    checkUser
+    login,
+    register,
+    logout,
+    mustAuthenticateedMw
 }

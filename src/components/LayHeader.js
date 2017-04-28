@@ -21,7 +21,9 @@ export default class LayHeader extends Component {
             weekDay: null,
             monthNames: null,
             open: false,
-            loginOpen: false
+            loginOpen: false,
+            registerOpen: false,
+            canSubmit: true
 
         }
         this.props.getDefaultDate(new Date());
@@ -43,6 +45,10 @@ export default class LayHeader extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('Auth',nextProps.auth.last())
+    }
+
     show() {
        this.setState({
            open: true
@@ -55,6 +61,8 @@ export default class LayHeader extends Component {
         });
     }
 
+
+
     loginFormOpen() {
         this.setState({
             loginOpen: true
@@ -64,6 +72,18 @@ export default class LayHeader extends Component {
     loginFormClose() {
         this.setState({
             loginOpen: false
+        })
+    }
+
+    registerFormOpen() {
+        this.setState({
+            registerOpen: true
+        })
+    }
+
+    registerFormClose() {
+        this.setState({
+            registerOpen: false
         })
     }
 
@@ -93,6 +113,30 @@ export default class LayHeader extends Component {
         console.log('OnChange', dateString)
         this.props.getDefaultDate(dateString);
         this.close();
+    }
+
+    enableButton() {
+        this.setState({
+            canSubmit: true
+        });
+    }
+
+    disableButton() {
+        this.setState({
+            canSubmit: false
+        });
+    }
+
+    submit(model) {
+        console.log('auth data', model)
+        this.props.login(model);
+        this.loginFormClose();
+    }
+
+    submitRegister(model) {
+        console.log('register data', model)
+        this.props.register(model);
+        this.registerFormClose();
     }
 
     render() {
@@ -138,12 +182,12 @@ export default class LayHeader extends Component {
                                         <p>Привет, {this.state.userName}!</p>
                                     </div>
 
-                                    {/*<div className="icon_phone"></div>
+                                    <div className="icon_phone"></div>
                                     <div className="phone_num">
                                         <p>{this.state.userPhone}</p>
-                                    </div>*/}
+                                    </div>
                                     <div className="reglink" onClick={this.loginFormOpen}>Вход</div><br/>
-                                    <div className="reglink"><a>Регистрация</a></div>
+                                    <div className="reglink" onClick={this.registerFormOpen}>Регистрация</div>
                                     <div className="rocket"></div>
                                 </div>
                             </div>
@@ -152,7 +196,7 @@ export default class LayHeader extends Component {
 
                 <div className="LayHeader__date LayHeader_container">
                     <div className="LayHeader__arrow">
-                        <span className="LayHeader__currentdate" >{this.state.monthNames}</span>
+                        <span className="LayHeader__currentdate" onClick={this.show}>{this.state.monthNames}</span>
                     </div>
                 </div>
                 <Modal
@@ -167,7 +211,7 @@ export default class LayHeader extends Component {
                         onChange={this.onChange}
                     />
                 </Modal>
-                {/*<Modal
+                <Modal
                     containerStyle={{ background: 'white', width: '345px',height: '200px', padding: 2, borderRadius:'6px'}}
                     closeOnOuterClick={true}
                     show={this.state.loginOpen}
@@ -177,10 +221,25 @@ export default class LayHeader extends Component {
                     </div>
                     <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
                         <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите логин" name="userName" required/><br/>
-                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" />
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" required />
                         <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
                     </Formsy.Form>
-                </Modal>*/}
+                </Modal>
+
+                <Modal
+                    containerStyle={{ background: 'white', width: '345px',height: '200px', padding: 2, borderRadius:'6px'}}
+                    closeOnOuterClick={true}
+                    show={this.state.registerOpen}
+                    onClose={this.registerFormClose}
+                >
+                    <div className="form__header">Регистрация. Введите логин и пароль
+                    </div>
+                    <Formsy.Form onValidSubmit={this.submitRegister} onValid={this.enableButton} onInvalid={this.disableButton}>
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите логин" name="userName" required/><br/>
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" required />
+                        <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
+                    </Formsy.Form>
+                </Modal>
             </div>
 
 
@@ -188,7 +247,7 @@ export default class LayHeader extends Component {
     }
 }
 
-{/*const MyOwnInput = React.createClass({
+const MyOwnInput = React.createClass({
     mixins: [Formsy.Mixin],
     changeValue(event) {
         this.setValue(event.currentTarget.value);
@@ -205,5 +264,5 @@ export default class LayHeader extends Component {
             </div>
         );
     }
-});*/}
+});
 

@@ -7,18 +7,16 @@ const URL_REGISTER = 'http://localhost:3001/register';
 
 export function register(data) {
     return {
-        type: 'NEXT_DATE',
-        date: d,
-        promise: request.post(URL, { date:d} )
+        type: 'REGISTER',
+        promise: request.post(URL_REGISTER, { data:data} )
     };
 }
 
 export function login(data) {
 
     return {
-        type: 'PREVIOUS_DATE',
-        promise: request.post(URL, { date:d} ),
-        date: d
+        type: 'LOGIN',
+        promise: request.post(URL_LOGIN, { data:data} ),
     };
 }
 

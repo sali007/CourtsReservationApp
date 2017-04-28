@@ -162,7 +162,7 @@ LHcontainer__sub2 {
 
 .item__l div span {
     color: #ffffff;
-    font-size: 18px;
+    font-size: 12px;
     line-height: 24px;
     font-weight: bold !important;
     /* text-shadow: 2px 2px 4px #1A70AC, 0 0 2em #1A70AC; */
@@ -298,7 +298,7 @@ LHcontainer__sub2 {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.icon_phone {
+/*.icon_phone {
     height: 24px;
     width: 24px;
     position: absolute;
@@ -307,11 +307,11 @@ LHcontainer__sub2 {
     background-size: 14px;
     border-color: white;
     background-repeat: no-repeat;
-}
+}*/
 
 .greeting p {
     position: absolute;
-    margin: 0px 0px 0px 15px;
+    margin: -15px 0px 0px 15px;
     font-size: 18px;
     font-weight: bold;
     color: #3a5872;
@@ -326,23 +326,21 @@ LHcontainer__sub2 {
 }
 
 .reglink {
-    width: 250px;
     position: absolute;
-    padding: 20px 0px 0px 15px;
+    margin: 10px 0px 0px 15px;
     font-size: 13px;
     color: #ffa066;
     cursor: pointer;
 }
 
-.rocket {
-    height: 108px;
+/*.rocket {
+    height: 58px;
     width: 109px;
-    margin-left: 75px;
     padding: 0px;
     position: absolute;
     background-image: url(../../../court-static/img/rocket.png);
     background-repeat: no-repeat;
-}
+}*/
 
 LHcenter__user {
     background-image: url(../../../court-static/icons/guest.png);
@@ -592,6 +590,13 @@ LHcenter__user {
     }
 }
 
+@media screen and (max-width: 1100px) {
+    .item__c {
+        display: none !important;
+        width: 150px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .LayHeader__day {
         display: none !important;
@@ -600,7 +605,7 @@ LHcenter__user {
         display: none !important;
     }
     .item__c {
-        /* display: none !important; */
+        display: none !important;
         width: 150px;
     }
     .LayHeader {
