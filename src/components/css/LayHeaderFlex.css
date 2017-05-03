@@ -171,7 +171,6 @@ LHcontainer__sub2 {
     position: relative;
     /* background-color: #dadada; */
     cursor: pointer;
-    line-height: 18px;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
