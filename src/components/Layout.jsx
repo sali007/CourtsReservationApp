@@ -21,6 +21,9 @@ import './css/RD.css';
     auth: state.auth
 }))
 export default class Layout extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         const { todos, auth, dispatch } = this.props;
@@ -33,11 +36,11 @@ export default class Layout extends Component {
                            {...bindActionCreators(AuthAction, dispatch)}/>
                 <div className='flexcontainer'>
                      <UITable todos={todos}
-                              court={1}
+                              court={0}
                               {...bindActionCreators(TodoActions, dispatch)}
                          />
                     <UITable todos={todos}
-                             court={2}
+                             court={1}
                              {...bindActionCreators(TodoActions, dispatch)}
                     />
                 </div>

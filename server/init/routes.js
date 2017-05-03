@@ -7,13 +7,10 @@ import promiseMiddleware from '../../src/middleware/promiseMiddleware';
 import ReactDom from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from '../../src/routes';
-import { controllers } from '../db'
-import fetchComponentData from '../fetchComponentData';
-
+import { controllers, passport as passportConfig } from '../db'
 
 const userReservationController = controllers && controllers.reservations;
-const userAuthController = controllers && controllers.users;
-
+const usersController = controllers && controllers.users;
 
 const reducer = combineReducers(reducers);
 const store = applyMiddleware(promiseMiddleware)(createStore)(reducer);
@@ -23,6 +20,15 @@ const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8080/
 
 export default (app) => {
 
+    if(usersController) {
+        app.post('/login', usersController.login);
+        app.post('/signUp', usersController.signUp);
+        app.post('/logout', usersController.logout);
+    } else {
+        console.warn('user Routes trbl');
+    }
+
+
     if(userReservationController) {
         app.post('/reservation', userReservationController.getReservations);
         app.post('/addReservation', userReservationController.add)
@@ -30,14 +36,39 @@ export default (app) => {
         console.warn('fail to load controller');
     }
 
-    if(userAuthController) {
-        app.post('/login', userAuthController.login);
-        app.post('/register', userAuthController.register);
-        app.get('/logout', userAuthController.logout);
+    app.get('/admin', (req, res) => {
+        match({ routes: routes, location: req.path }, (error, redirectLocation, props) => {
+            if (redirectLocation) {
+                res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+            }
 
-        app.all('/admin', userAuthController.mustAuthenticateedMw);
-        app.all('/admin/*', userAuthController.mustAuthenticateedMw);
-    }
+            if (error) { // ѕроизошла ошибка любого рода
+                return res.status(500).send(error.message);
+            }
+
+            if (!props) { // мы не определили путь, который бы подошел дл€ URL
+                return res.status(404).send('Not found\n');
+            }
+
+            const componentHTML = ReactDom.renderToString(
+                <Provider store={store}>
+                    <RouterContext {...props}/>
+                </Provider>
+            );
+
+            res.header('Access-Control-Allow-Methods', 'POST,GET,OPTION')
+            res.header('Access-Control-Allow-Origin', '*');
+            /*res.writeHead(200, {
+             'Content-Type': 'text/html;charset=utf-8',
+             'Access-Control-Allow-Origin': '*',
+             'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
+             })*/
+            console.log()
+            return res.end(renderHTML(componentHTML));
+
+        })
+
+    })
 
     app.get('/', (req, res) => {
 

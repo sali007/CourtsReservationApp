@@ -8,11 +8,12 @@ const ReservationsSchema = new mongoose.Schema({
     reservation: [{
         hour: Number,
         date: String,
-        userName: String,
+        username: String,
         phone: Number,
         summ: Number,
         status: String
     }]
 });
+
 
 export default mongoose.model('Reservation', ReservationsSchema);

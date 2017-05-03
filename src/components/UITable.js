@@ -41,6 +41,7 @@ class UIRow extends Component {
     }
 }
 
+
 class UITable extends Component {
     constructor(props, context) {
         super(props, context);
@@ -54,25 +55,33 @@ class UITable extends Component {
             value: '',
             court: '',
             _id: 0,
-            date: Date.now(),
+            date: null,
             schedule: null,
             currentUIRowStatus: null,
         };
         autobind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillUpdate(nextProps) {
+        if(this.props !== nextProps) {
+            this.setState({
+                date: nextProps.todos.last().date,
+            })
+        }
+    }
 
+    componentWillReceiveProps(nextProps) {
         if(this.props !== nextProps) {
 
                 console.log('UITABLE ComponentWillReceiveProps Received', nextProps.todos.last().res.data);
                 this.setState({
-                    _id: nextProps.todos.last().res.data._id,
                     date: nextProps.todos.last().date,
-                    schedule: nextProps.todos.last().res.data.data,
+                    _id: nextProps.todos.last().res.data[nextProps.court]._id,
+                    schedule: nextProps.todos.last().res.data[nextProps.court].data,
                     court: nextProps.court
                 })
-            console.log('Court number',nextProps.court)
+            console.log('Court number',nextProps.court);
+            console.log('Court object id', nextProps.todos.last().res.data[nextProps.court]._id)
         }
     }
 
@@ -134,12 +143,13 @@ class UITable extends Component {
             this.state._id,
             this.state.date,
             this.state.court,
-            model.userName,
+            model.username,
             model.phone,
             this.state.hour,
             this.state.value,
             this.state.currentUIRowStatus.status
         )
+        this.props.getDefaultDate(this.state.date);
         this.close(true);
     }
     render() {
@@ -177,7 +187,7 @@ class UITable extends Component {
                     </div>
                     <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
                         <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Напишите телефон для связи с Вами" name="phone" required/><br/>
-                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите имя и фамилию" name="userName" />
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите имя и фамилию" name="username" />
                         <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
                     </Formsy.Form>
                 </Modal>

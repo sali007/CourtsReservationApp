@@ -33,7 +33,7 @@ export function getDefaultDate(date) {
     }
 }
 
-export function addReserve(id, date, court, userName, userPhone, hour, summ, status) {
+export function addReserve(id, date, court, username, userPhone, hour, summ, status) {
     return {
         type: 'ADD_RESERVATION',
         date: date,
@@ -42,7 +42,7 @@ export function addReserve(id, date, court, userName, userPhone, hour, summ, sta
                id:id,
                date: date,
                court:court,
-               userInfo: userName,
+               userInfo: username,
                userPhone: userPhone,
                summ: summ,
                hour: hour,

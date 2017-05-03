@@ -13,7 +13,7 @@ export default class LayHeader extends Component {
         super(props)
         this.state = {
             isAuthorized: false,
-            userName: 'Гость',
+            username: 'Гость',
             userId: 0,
             userPhone: '',
             currentDate: null,
@@ -34,19 +34,30 @@ export default class LayHeader extends Component {
     }
 
     componentWillUpdate(nextProps) {
-        if(this.props !== nextProps) {
+        if(this.props != nextProps) {
             this.setState({
                 currentDate: nextProps.todos.last().date,
                 day : new Date(nextProps.todos.last().date).getDate(),
                 weekDay: this.getWeekDayNames(nextProps.todos.last().date),
                 monthNames: this.getMonthNames(nextProps.todos.last().date),
-            })
+
+            });
+
             console.log('LayHeader ComponentWillUpdate', new Date(nextProps.todos.last().date).toString())
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('Auth',nextProps.auth.last())
+
+        if (this.props !== nextProps && nextProps.auth.last()) {
+            console.log('UITABLE ComponentWillReceiveProps Received', nextProps.todos.last().res.data);
+            this.setState({
+                _id: nextProps.auth.last().res.data._id,
+                username: nextProps.auth.last().res.data.email,
+                isAuthorized: nextProps.auth.last().res.data._id != 0 ? true : false,
+            })
+            console.log('Court number',nextProps.court)
+        }
     }
 
     show() {
@@ -139,6 +150,11 @@ export default class LayHeader extends Component {
         this.registerFormClose();
     }
 
+    logout() {
+        this.props.logout()
+
+    }
+
     render() {
 
         return (
@@ -159,44 +175,46 @@ export default class LayHeader extends Component {
                             <div className="LHitem item__la" onClick={this.handlePrev}></div>
                             {/*Tablo day/weekday*/}
                             <div className="LHitem item__de" onClick={this.show}>
-                                <div className="LHcenter__day" >{this.state.day}</div><br/>
+                                <div className="LHcenter__day" >{this.state.day}</div>
                                 <div className="LHcenter__weekday" >{this.state.weekDay}</div>
+
                             </div>
                             {/*Right arrow*/}
                             <div className="LHitem item__ra" onClick={this.handleNext}></div>
                             </div>
                         <div className="LHitem item__c" onClick={this.show}></div>
 
-                        {/*Registration Card*/}
-                            <div className="LayHeader_RC">
-                                <div className=" item__reg_zone">
-                                    <div className="icon_guest"></div>
-                                    <div className="userId">
-                                        <p>{this.state.userName}</p>
-                                        {/*<p>{this.state.userId}</p>*/}
-                                    </div>
-                                </div>
-
-                                <div className=" item__user_info">
-                                    <div className="greeting">
-                                        <p>Привет, {this.state.userName}!</p>
-                                    </div>
-
-                                    <div className="icon_phone"></div>
-                                    <div className="phone_num">
-                                        <p>{this.state.userPhone}</p>
-                                    </div>
-                                    <div className="reglink" onClick={this.loginFormOpen}>Вход</div><br/>
-                                    <div className="reglink" onClick={this.registerFormOpen}>Регистрация</div>
-                                    <div className="rocket"></div>
-                                </div>
-                            </div>
                     </div>
                 </div>
 
                 <div className="LayHeader__date LayHeader_container">
                     <div className="LayHeader__arrow">
                         <span className="LayHeader__currentdate" onClick={this.show}>{this.state.monthNames}</span>
+                    </div>
+                </div>
+                {/*Registration Card*/}
+                <div className="LayHeader_RC">
+                    <div className=" item__reg_zone">
+                        <div className="icon_guest"></div>
+                        <div className="userId">
+                            <p>{this.state.username}</p>
+                            {/*<p>{this.state.userId}</p>*/}
+                        </div>
+                    </div>
+
+                    <div className=" item__user_info">
+                        <div className="greeting">
+                            <p>Привет, {this.state.username}!</p>
+                        </div>
+
+                        <div className="icon_phone"></div>
+                        <div className="phone_num">
+                            <p>{this.state.userPhone}</p>
+                        </div>
+                        {/*<div className="reglink" onClick={this.loginFormOpen}>Вход</div><br/>*/}
+                        <div className={this.state.isAuthorized ? "unAuthorized" : "reglink" }  onClick={this.registerFormOpen}>Регистрация</div>
+                        <div className={this.state.isAuthorized ? "reglink" : "unAuthorized" } onClick={this.logout}>Выйти</div>
+                        <div className="rocket"></div>
                     </div>
                 </div>
                 <Modal
@@ -220,7 +238,7 @@ export default class LayHeader extends Component {
                     <div className="form__header">Введите логин и пароль
                     </div>
                     <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите логин" name="userName" required/><br/>
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите email" name="email" required/><br/>
                         <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" required />
                         <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
                     </Formsy.Form>
@@ -235,7 +253,7 @@ export default class LayHeader extends Component {
                     <div className="form__header">Регистрация. Введите логин и пароль
                     </div>
                     <Formsy.Form onValidSubmit={this.submitRegister} onValid={this.enableButton} onInvalid={this.disableButton}>
-                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите логин" name="userName" required/><br/>
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите email" name="email" required/><br/>
                         <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" required />
                         <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
                     </Formsy.Form>

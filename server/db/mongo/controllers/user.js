@@ -1,113 +1,70 @@
 import User from '../models/user';
-import Crypto from 'crypto';
 import passport from 'passport';
 
-function login(req, res, next) {
-    passport.authenticate('local',
-        function(err, user, info) {
-            return err
-                ? next(err)
-                : user
-                    ? req.logIn(user, function(err) {
-                        return err
-                            ? next(err)
-                            : res.redirect('/private');
-                    })
-                    : res.redirect('/');
+/**
+ * POST /login
+ */
+export function login(req, res, next) {
+    // Do email and password validation for the server
+    passport.authenticate('local', (authErr, user, info) => {
+        if (authErr) return next(authErr);
+        if (!user) {
+            console.log('Login', user, info, authErr, req.body)
+            return res.status(401).json({ message: info.message });
         }
-    )(req, res, next);
-};
+        // Passport exposes a login() function on req (also aliased as
+        // logIn()) that can be used to establish a login session
+        return req.logIn(user, (loginErr) => {
+            if (loginErr) return res.status(401).json({ message: loginErr });
 
-function register(req, res, next) {
-  var user = new User({
-      userName: req.body.data.userName,
-      password: req.body.data.password
-  });
-  user.save(function(err) {
-      return err
-         ? next(err)
-          : req.login(user, function(err) {
-              return err
-                 ? next(err)
-                  : res.redirect('/admin')
-          });
-  });
-};
+            console.log(req.isAuthenticated())
+            res.redirect('/admin')
+            //return res.status(200).json({
+            //    message: 'You have been successfully logged in.'
+            // });
+        });
+    })(req, res, next);
+}
 
-function logout(req, res) {
+/**
+ * POST /logout
+ */
+export function logout(req, res) {
+    // Do email and password validation for the server
     req.logout();
-    res.redirect('/');
+    res.json({_id:0, email: 'Гость'})
 }
 
-function mustAuthenticateedMw(req, res, next) {
-    req.isAuthenticated()
-       ? next()
-        : res.status(500)
-    //res.redirect('/');
-}
+/**
+ * POST /signup
+ * Create a new local account
+ */
+export function signUp(req, res, next) {
+    let user = new User({
+        email: req.body.email,
+        password: req.body.password
+    });
 
-/*function createUser(req, res) {
-
-    console.log('Create user request', req.body)
-
-    User.create({
-        userName: req.body.userName,
-        phone: req.body.phone,
-        password: hash(req.body.password).toString()
-    }, (err,savedUser) => {
-        if(savedUser == undefined) {
-            console.log('Such user already exists')
-            return res.status(400).send('User Already exists')
+    console.log('User object', user)
+    User.findOne({ username: req.body.email }, (findErr, existingUser) => {
+        console.log('excisting user', existingUser)
+        if (existingUser) {
+            return res.status(409).json({ message: 'Account with this email address already exists!' });
         }
-        console.log('User is created', savedUser)
-        return res.status(200).send(savedUser)
-    })
+
+        return user.save((saveErr) => {
+            if (saveErr) return next(saveErr);
+            return req.logIn(user, (loginErr) => {
+                if (loginErr) return res.status(401).json({ message: loginErr });
+                return res.status(200).json(user);
+            });
+        });
+    });
 }
 
-function getUser(id) {
-    return User.findOne(id);
-}
-
-function checkUser(req, res) {
-
-    console.log('Check user request', req.body)
-    var h = hash(req.body.data.password)
-    console.log('Your pass ',h)
-    if(req.session.user) return res.redirect('/')
-    return User.findOne({
-        userName: req.body.data.userName
-       }).exec((err, doc) => {
-        console.log('response',doc)
-
-        if(doc != null) {
-            if (doc.password == hash(req.body.data.password)) {
-                console.log('User password is Ok');
-            }
-        }else {
-            return Promise.reject('Error. Wrong Password')
-        }
-    }).then(function (user) {
-        if(user) {
-            req.session.user = {
-                id: user._id,
-                name: user.name
-            }
-            return res.redirect('/')
-        } else {
-            console.log('Error Check user');
-            res.status(400).send('Ошибка авторизации')
-        }
-    })
-}
-
-function hash(text) {
-    return Crypto.createHash('sha1')
-        .update(text).digest('base64')
-}*/
 
 export default {
     login,
-    register,
-    logout,
-    mustAuthenticateedMw
+    signUp,
+    logout
 }

@@ -7,7 +7,9 @@ export default function AuthReducer(state = defaultState, action) {
         case 'LOGIN':
             return state.concat(action);
         case 'REGISTER':
-            return state.concat(action)
+            return state.concat(action);
+        case 'LOGOUT':
+            return state.concat(action);
 
         default:
             return state;

@@ -2,42 +2,68 @@ import _ from 'lodash';
 import Reservation from '../models/reservations';
 import { Courts } from '../../../../src/components/Storage';
 
-function courtForming(reservations) {
-    console.log('Get reservations result')
-    let courtOrigin = Courts(0),
-        court = JSON.stringify(courtOrigin);
-        court = JSON.parse(court);
+function courtForming(reservations, d) {
+    console.log('Get reservations result', d)
+    let courtOrigin = Courts(),
+        courtDefault = JSON.stringify(courtOrigin);
+        courtDefault = JSON.parse(courtDefault);
         courtOrigin = null;
-    let reserve = reservations[0] == undefined ? reservations : reservations[0];
+    //let reserve = reservations;
+    let date = new Date(d);
+    if (reservations.length == 0 || reservations == undefined) {
+        var courtCounter = 0;
 
-    console.log('Default court')
-    if(reserve == undefined || reserve.reservation == undefined) {
-        let date = new Date();
-            court.day = date.getDate(),
-            court.month = date.getMonth(),
-            court.year = date.getFullYear(),
-            court._id = 0;
-        console.log('Empty object. Default is defined')
-        return court;
-    }
-    court.court = reserve.court;
-    court.day = reserve.day;
-    court.month = reserve.month;
-    court.year = reserve.year;
-    court._id = reserve._id;
+        courtDefault.forEach(function (court, counter) {
 
-    court.data.forEach(function (schedule) {
-        reserve.reservation.forEach(function (reserved) {
-            if(schedule.hour == reserved.hour) {
-                schedule.status = reserved.status;
-                schedule._id_ = reserved._id;
-                schedule.value = '';
-            }
+            courtDefault[counter].day = date.getDate(),
+                courtDefault[counter].month = date.getMonth(),
+                courtDefault[counter].year = date.getFullYear(),
+                courtDefault[counter]._id = 0;
+            console.log('Empty object. Default is defined')
+            //return court;
+            counter++;
         })
+        console.log('Default object', courtDefault)
+        return courtDefault;
+    }
+
+    if(reservations)
+
+    reservations.forEach(function (court) {
+
+        if (court == undefined || court.reservation == undefined) {
+            console.log('Default court')
+            let date = new Date();
+            courtDefault[court.court].day = date.getDate(),
+                courtDefault[court.court].month = date.getMonth(),
+                courtDefault[court.court].year = date.getFullYear(),
+                courtDefault[court.court]._id = 0;
+            console.log('Empty object. Default is defined')
+            //return court;
+        }
+
+        courtDefault[court.court].court = court.court;
+        courtDefault[court.court].day = court.day;
+        courtDefault[court.court].month = court.month;
+        courtDefault[court.court].year = court.year;
+        courtDefault[court.court]._id = court._id;
+        console.log('court state ¹1', courtDefault[court.court])
+
+        courtDefault[court.court].data.forEach(function (schedule) {
+            court.reservation.forEach(function (reserved) {
+                if (schedule.hour == reserved.hour) {
+                    schedule.status = reserved.status;
+                    schedule._id_ = reserved._id;
+                    schedule.value = '';
+                }
+            })
+        });
+        console.log('Reservation schedule for ' + court.day + '.' + court.month)
+
     })
 
-    console.log('Reservation schedule for ' + court.day + '.' + court.month)
-    return court;
+        return courtDefault;
+
 }
 
 export function getReservations(req, res) {
@@ -46,10 +72,11 @@ export function getReservations(req, res) {
         month = date.getMonth(),
         year = date.getFullYear();
 
+
     Reservation.find({
         day:day,
         month:month,
-        year:year
+        year:year,
     }).exec((err, reservations) => {
         if (err) {
             console.log('Error in first query');
@@ -65,14 +92,14 @@ export function getReservations(req, res) {
             'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
         })*/
 
-        console.log('Success in query___getReservations ');
+        console.log('Success in query___getReservations ', reservations);
         /*res.header('Accept', 'text/json');
         res.header('Access-Control-Allow-Origin: *');
         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
         res.header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');*/
-        console.log('Headers req', req);
-        console.log('Headers res', res);
-        res.json(courtForming(reservations));
+        //console.log('Headers req', req);
+        console.log('Get Reservation date', date);
+        res.json(courtForming(reservations, req.body.date));
     })
 }
 
@@ -84,8 +111,7 @@ export function add(req, res) {
         reservation = {
             hour:req.body.hour,
             date: date,
-            court: req.body.date,
-            userName: req.body.userInfo,
+            username: req.body.userInfo,
             phone: req.body.userPhone,
             summ: req.body.summ,
             status: 'holden'
@@ -93,41 +119,66 @@ export function add(req, res) {
 
         console.log('Add request body', req.body);
 
+
+
     if(req.body.id == 0) {
 
         Reservation.create({
             day:day,
             month:month,
             year:year,
-            court:req.body.court,
+            court: req.body.court,
             reservation
         }, (err, reservations) => {
             if (err) {
                 console.log(err);
                 return res.status(400).send(err);
             }
-            console.log('Default date created ' + reservations)
-            return res.json(courtForming(reservations));
+            console.log('ID null Default date created ' + reservations)
+            return getReservations(req, res)
         });
     } else {
-        Reservation.findById(req.body.id, function (err, reservations) {
-            if (err) {
+
+        Reservation.find({
+            day: day,
+            month: month,
+            year: year,
+            court:req.body.court
+        }, function (err, reservations) {
+            if (err || reservations.length == 0) {
                 console.log('Error while searching by key ' + req.body.id)
+                console.log('Empty reservation result', reservations)
+                Reservation.create({
+                    day:day,
+                    month:month,
+                    year:year,
+                    court: req.body.court,
+                    reservation
+                }, (err, reservation) => {
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).send(err);
+                    }
+                    console.log('Default date created ' + reservation)
+                    return getReservations(req, res)
+                });
+            } else {
+
+                reservations[0].reservation.forEach(function (reserved) {
+                    if (reserved.hour == req.body.hour) {
+                        console.log('Time already Reserved ' + reserved.hour);
+                        res.status(500);
+                    }
+                })
+
+                reservations[0].reservation.push(reservation);
+                reservations[0].save();
+
+                console.log('New Reservation has been successfully saved' + reservations)
+
+                //getReservations(req, res)
+                return getReservations(req, res)
             }
-
-            reservations.reservation.forEach(function (reserved) {
-                if(reserved.hour == req.body.hour) {
-                   console.log('Time already Reserved ' + reserved.hour );
-                   res.status(500);
-                }
-            })
-
-            reservations.reservation.push(reservation);
-            reservations.save();
-
-            console.log('New Reservation has been successfully saved' + reservations)
-
-            return res.json(courtForming(reservations));
             })
     }
 }

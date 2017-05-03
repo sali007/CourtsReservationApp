@@ -1,7 +1,6 @@
 /* LayHeader */
 
 .LayHeader__main {
-    height: 158px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -30,7 +29,6 @@
     margin-top: 0;
     padding-top: 0;
     text-align: center;
-    vertical-align: middle;
     display: block;
     line-height: 20px;
     font-size: 20px;
@@ -90,21 +88,6 @@
     z-index: 300;
 }
 
-.LHuser {
-    width: 150px;
-    height: 80px;
-    margin-top: 40px;
-    padding-top: 30px;
-    padding-left: 10px;
-    border: 1px solid #36445F;
-    border-radius: 10px;
-    background: url(../../../court-static/img/rocket.png);
-    background-repeat: no-repeat;
-    background-position: right center;
-    text-align: left;
-    color: #fff;
-}
-
 .LHcontainer,
 LHcontainer__sub {
     padding: 0;
@@ -142,13 +125,12 @@ LHcontainer__sub2 {
     padding: 0;
     margin: 0;
     color: black;
-    height: 158px;
 }
 
 .item__l {
     position: absolute;
-    width: 311px;
-    height: 158px;
+    top:10px;
+    width: 331px;
     /* background-color: #dadada; */
     background: url(../../../court-static/img/club_logo.png);
     background-repeat: no-repeat;
@@ -162,22 +144,21 @@ LHcontainer__sub2 {
 
 .item__l div span {
     color: #ffffff;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 24px;
     font-weight: bold !important;
     /* text-shadow: 2px 2px 4px #1A70AC, 0 0 2em #1A70AC; */
-    text-shadow: 3px 3px 3px #024D98;
+    /*text-shadow: 3px 3px 3px #024D98;*/
 }
 
 .item__la {
-    height: 158px;
+    height: 148px;
     background: url(../../../court-static/img/arrow1.png);
     background-repeat: no-repeat;
     background-position: center center;
     text-align: center;
     width: 94px;
     cursor: pointer;
-    line-height: 158px;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -187,27 +168,18 @@ LHcontainer__sub2 {
 }
 
 .item__de {
+    position: relative;
     /* background-color: #dadada; */
-    line-height: 158px;
     cursor: pointer;
+    line-height: 18px;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .item__de div {
-    display: inline-table;
-    margin-top: -10px;
+    margin-top: 20px;
     vertical-align: top !important;
-    font-size: 20px;
     font-weight: bold !important;
     color: #36445F;
-}
-
-.item__de div div.LHday {
-    height: 15px;
-}
-
-.item__de div div.LHweekday {
-    height: 15px;
 }
 
 .LHcenter__day {
@@ -219,19 +191,18 @@ LHcontainer__sub2 {
 .LHcenter__weekday {
     text-align: center;
     /* line-height: 158px; */
-    font-size: 25px !important;
+    font-size: 22px !important;
     cursor: pointer;
 }
 
 .item__ra {
-    height: 158px;
+    height: 148px;
     background: url(../../../court-static/img/arrow2.png);
     background-repeat: no-repeat;
     background-position: center center;
     text-align: center;
     width: 94px;
     cursor: pointer;
-    line-height: 158px;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -239,6 +210,7 @@ LHcontainer__sub2 {
     position: absolute;
     right: 26%;
     width: 150px;
+    height: 148px;
     background-color: #dadada;
     background: url(../../../court-static/img/btn_cal.png);
     background-repeat: no-repeat;
@@ -311,7 +283,7 @@ LHcontainer__sub2 {
 
 .greeting p {
     position: absolute;
-    margin: -15px 0px 0px 15px;
+    margin: 15px 0px 0px 15px;
     font-size: 18px;
     font-weight: bold;
     color: #3a5872;
@@ -327,10 +299,18 @@ LHcontainer__sub2 {
 
 .reglink {
     position: absolute;
-    margin: 10px 0px 0px 15px;
+    margin: 75px 0px 0px 15px;
     font-size: 13px;
     color: #ffa066;
     cursor: pointer;
+}
+
+.reglink:hover {
+    color: #fafafa;
+}
+
+.unAuthorized {
+  display: none;
 }
 
 /*.rocket {
@@ -465,6 +445,9 @@ LHcenter__user {
 @media screen and (max-width: 667px) {
     .LayHeader_container {
         width: 667px;
+    }
+    .LayHeader_RC {
+        position: fixed;
     }
     .LayHeader_container .UITable {
         width: 300px;

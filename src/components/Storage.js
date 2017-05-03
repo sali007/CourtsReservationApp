@@ -286,6 +286,7 @@ const courts = [
     }
 ];
 
-export const Courts = function (court, stamp) {
-    return courts[court];
+
+export const Courts = function () {
+    return courts;
 };
