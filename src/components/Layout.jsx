@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux'
 import * as TodoActions from '../actions/ToDoActions';
 import * as AuthAction from '../actions/AuthActions';
+import * as LoginFormActions from '../actions/LoginFormActions';
 import { connect } from 'react-redux'
 
 import { observer } from 'mobx-react';
@@ -18,20 +19,26 @@ import './css/RD.css';
 
 @connect(state => ({
     todos: state.todoss,
-    auth: state.auth
+    auth: state.auth,
+    loginForm: state.loginForm
 }))
 export default class Layout extends Component {
     constructor(props) {
         super(props);
     }
 
+    componentWillUpdate(nextProps) {
+
+    }
+
     render() {
-        const { todos, auth, dispatch } = this.props;
+        const { todos, auth, loginForm, dispatch } = this.props;
 
         return (
             <div className="App">
                 <LayHeader todos={todos}
                            auth={auth}
+                           loginForm={loginForm}
                            {...bindActionCreators(TodoActions, dispatch)}
                            {...bindActionCreators(AuthAction, dispatch)}/>
                 <div className='flexcontainer'>
