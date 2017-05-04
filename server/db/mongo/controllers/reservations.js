@@ -23,7 +23,7 @@ function courtForming(reservations, d) {
             //return court;
             counter++;
         })
-        console.log('Default object', courtDefault)
+        console.log('Default object')
         return courtDefault;
     }
 
@@ -47,7 +47,7 @@ function courtForming(reservations, d) {
         courtDefault[court.court].month = court.month;
         courtDefault[court.court].year = court.year;
         courtDefault[court.court]._id = court._id;
-        console.log('court state ¹1', courtDefault[court.court])
+        console.log('court state ¹1')
 
         courtDefault[court.court].data.forEach(function (schedule) {
             court.reservation.forEach(function (reserved) {
@@ -92,7 +92,7 @@ export function getReservations(req, res) {
             'Access-Control-Allow-Methods': 'POST,GET,OPTIONS'
         })*/
 
-        console.log('Success in query___getReservations ', reservations);
+        console.log('Success in query___getReservations ');
         /*res.header('Accept', 'text/json');
         res.header('Access-Control-Allow-Origin: *');
         res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
@@ -117,7 +117,7 @@ export function add(req, res) {
             status: 'holden'
         }
 
-        console.log('Add request body', req.body);
+        console.log('Add request body');
 
 
 
@@ -134,7 +134,7 @@ export function add(req, res) {
                 console.log(err);
                 return res.status(400).send(err);
             }
-            console.log('ID null Default date created ' + reservations)
+            console.log('ID null Default date created ')
             return getReservations(req, res)
         });
     } else {
@@ -147,7 +147,7 @@ export function add(req, res) {
         }, function (err, reservations) {
             if (err || reservations.length == 0) {
                 console.log('Error while searching by key ' + req.body.id)
-                console.log('Empty reservation result', reservations)
+                console.log('Empty reservation result')
                 Reservation.create({
                     day:day,
                     month:month,
@@ -159,7 +159,7 @@ export function add(req, res) {
                         console.log(err);
                         return res.status(400).send(err);
                     }
-                    console.log('Default date created ' + reservation)
+                    console.log('Default date created ')
                     return getReservations(req, res)
                 });
             } else {
@@ -172,12 +172,13 @@ export function add(req, res) {
                 })
 
                 reservations[0].reservation.push(reservation);
-                reservations[0].save();
+                reservations[0].save(function (err) {
+                    if(err) return res.status(400).send('Error while saving user profile');
+                    console.log('New Reservation has been successfully saved')
 
-                console.log('New Reservation has been successfully saved' + reservations)
-
-                //getReservations(req, res)
-                return getReservations(req, res)
+                    //getReservations(req, res)
+                    return getReservations(req, res)
+                });
             }
             })
     }
