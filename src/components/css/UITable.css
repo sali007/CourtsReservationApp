@@ -54,10 +54,10 @@
     background-color: #C3A2D7 !important;
 }
 .UITable tbody tr.holden:hover, .UITable tbody tr.hiden:hover {
-    opacity: 0.8;
+    background-color: #af90c3 !important;
 }
 .UITable tbody tr.free:hover {
-    opacity: 0.8;
+    background-color: #73c36c !important;
 }
 .UITable tbody tr.active:hover {
     background-color: #C3A2D7 !important;
