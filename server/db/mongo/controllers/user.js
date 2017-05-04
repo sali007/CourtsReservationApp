@@ -46,7 +46,7 @@ export function signUp(req, res, next) {
     });
 
     console.log('User object', user)
-    User.findOne({ username: req.body.email }, (findErr, existingUser) => {
+    User.findOne({ email: req.body.email }, (findErr, existingUser) => {
         console.log('excisting user', existingUser)
         if (existingUser) {
             return res.status(409).json({ message: 'Account with this email address already exists!' });
