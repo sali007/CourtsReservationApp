@@ -203,17 +203,13 @@ export default class LayHeader extends Component {
                     </div>
 
                     <div className=" item__user_info">
-                        <div className="greeting">
-                            <p>Привет, {this.state.username}!</p>
-                        </div>
+                        <div className="greeting"><p>Привет, {this.state.username}!</p></div>
 
-                        <div className="icon_phone"></div>
-                        <div className="phone_num">
-                            <p>{this.state.userPhone}</p>
-                        </div>
-                        {/*<div className="reglink" onClick={this.loginFormOpen}>Вход</div><br/>*/}
+                        <div className="phone_num">{this.state.userPhone}</div>
+                        <div className={this.state.isAuthorized ? "icon_phone" : "unAuthorized" } ></div>
+                        <div className={this.state.isAuthorized ? "unAuthorized" : "loginLink" } onClick={this.loginFormOpen}>Вход</div><br/>
                         <div className={this.state.isAuthorized ? "unAuthorized" : "reglink" }  onClick={this.registerFormOpen}>Регистрация</div>
-                        <div className={this.state.isAuthorized ? "reglink" : "unAuthorized" } onClick={this.logout}>Выйти</div>
+                        <div className={this.state.isAuthorized ? "logoutLink" : "unAuthorized" } onClick={this.logout}>Выйти</div>
                         <div className="rocket"></div>
                     </div>
                 </div>
