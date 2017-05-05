@@ -155,8 +155,8 @@ export default class LayHeader extends Component {
 
     }
 
-    loginForm() {
-
+    loginPage = (e) => {
+        this.props.loginPage(true);
     }
 
     render() {
@@ -214,7 +214,7 @@ export default class LayHeader extends Component {
                         <div className={this.state.isAuthorized ? "unAuthorized" : "loginLink" } onClick={this.loginFormOpen}>Вход</div><br/>
                         <div className={this.state.isAuthorized ? "unAuthorized" : "reglink" }  onClick={this.registerFormOpen}>Регистрация</div>
                         <div className={this.state.isAuthorized ? "logoutLink" : "unAuthorized" } onClick={this.logout}>Выйти</div>
-                        <div className="enterLoginForm" onClick={this.loginForm}>Войти</div>
+                        <div className="enterLoginForm" onClick={this.loginPage}>Войти</div>
                         <div className="rocket"></div>
                     </div>
                 </div>

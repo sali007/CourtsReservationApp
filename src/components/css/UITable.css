@@ -8,7 +8,8 @@
     border: none !important;
     border-bottom: none !important;
     box-shadow: none !important;
-    width: 360px;
+    width: 400px;
+    text-align: center;
 }
 .UITable thead tr {
     border: none !important;

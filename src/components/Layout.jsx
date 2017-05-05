@@ -28,7 +28,7 @@ export default class Layout extends Component {
     }
 
     componentWillUpdate(nextProps) {
-
+        console.log('Login Form state', this.props)
     }
 
     render() {

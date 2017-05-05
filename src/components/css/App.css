@@ -50,7 +50,6 @@
 .flexcontainer {
   margin-left: auto;
   margin-right: auto;
-	display: flex;
 	flex-direction: row;
   flex-wrap: wrap;
   align-items: stretch;
@@ -62,111 +61,111 @@
 
 @media screen and (max-width: 4900px) {
 	.flexcontainer {
-	  width: 730px;
+	  width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+	  width: 400px;
 	}
 }
 
 @media screen and (max-width: 1440px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 1280px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 1024px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 960px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 950px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 900px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 800px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 773px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 768px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 736px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 732px) {
 	.flexcontainer {
-	  width: 730px;
+		width: 900px;
 	}
 
 	.flexcontainer .UITable {
-	  width: 360px;
+		width: 400px;
 	}
 }
 @media screen and (max-width: 667px) {
