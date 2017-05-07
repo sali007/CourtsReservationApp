@@ -18,10 +18,10 @@ export function login(req, res, next) {
             if (loginErr) return res.status(401).json({ message: loginErr });
 
             console.log(req.isAuthenticated())
-            res.redirect('/admin')
-            //return res.status(200).json({
-            //    message: 'You have been successfully logged in.'
-            // });
+            //
+            return res.status(200).json({
+                message: 'You have been successfully logged in.'
+             });
         });
     })(req, res, next);
 }

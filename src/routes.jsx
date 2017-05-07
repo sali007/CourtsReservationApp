@@ -15,9 +15,9 @@ export default (
         <Route path="/" history={browserHistory} component={Layout}>
             <IndexRoute component={Layout} />
             <Route path="reservation" history={browserHistory} component={Layout}/>
-            <Route path="register" history={browserHistory} component={UITable}/>
+            <Route path="register" component={Layout}/>
             <Route path="login" component={Layout}/>
-            <Route path="admin" component={UITable}/>
+            <Route path="admin" component={Layout}/>
             <Route path="logout" component={Layout}/>
         </Route>
 )

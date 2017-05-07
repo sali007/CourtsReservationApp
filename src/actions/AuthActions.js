@@ -1,9 +1,9 @@
 import request from 'axios';
 
 
-const URL_LOGIN = '/login';
-const URL_REGISTER = '/signUp';
-const URL_LOGOUT = '/logout';
+const URL_LOGIN = 'http://127.0.0.1:3001/login';
+const URL_REGISTER = 'http://127.0.0.1:3001/signUp';
+const URL_LOGOUT = 'http://127.0.0.1:3001/logout';
 
 
 export function register(data) {

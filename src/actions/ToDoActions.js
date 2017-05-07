@@ -1,8 +1,8 @@
 import request from 'axios';
 
 
-const URL = '/reservation';
-const ADD_RESERVATION_URL = '/addReservation';
+const URL = 'http://127.0.0.1:3001/reservation';
+const ADD_RESERVATION_URL = 'http://127.0.0.1:3001/addReservation';
 
 
 export function nextDate(date) {

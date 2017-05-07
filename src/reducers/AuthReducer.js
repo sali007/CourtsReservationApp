@@ -1,15 +1,15 @@
 import { List } from 'immutable';
 
-const defaultState = new List();
+const defaultState = false;
 
 export default function AuthReducer(state = defaultState, action) {
     switch(action.type) {
         case 'LOGIN':
-            return state.concat(action);
+            return action;
         case 'REGISTER':
-            return state.concat(action);
+            return action;
         case 'LOGOUT':
-            return state.concat(action);
+            return action;
 
         default:
             return state;

@@ -21,15 +21,12 @@ export default class LayHeader extends Component {
             weekDay: null,
             monthNames: null,
             open: false,
-            loginOpen: false,
-            registerOpen: false,
-            canSubmit: true
-
+            canSubmit: true,
         }
         this.props.getDefaultDate(new Date());
         autobind(this);
 
-        console.log('Props log', this.props)
+        //console.log('Props log', this.props)
 
     }
 
@@ -39,24 +36,22 @@ export default class LayHeader extends Component {
                 currentDate: nextProps.todos.last().date,
                 day : new Date(nextProps.todos.last().date).getDate(),
                 weekDay: this.getWeekDayNames(nextProps.todos.last().date),
-                monthNames: this.getMonthNames(nextProps.todos.last().date),
-
+                monthNames: this.getMonthNames(nextProps.todos.last().date)
             });
 
-            console.log('LayHeader ComponentWillUpdate', new Date(nextProps.todos.last().date).toString())
+            console.log('LayHeader ComponentWillUpdate', nextProps)
         }
     }
 
     componentWillReceiveProps(nextProps) {
 
-        if (this.props !== nextProps && nextProps.auth.last()) {
-            console.log('UITABLE ComponentWillReceiveProps Received', nextProps.todos.last().res.data);
+        if (nextProps.auth) {
+            console.log('LayHeader ComponentWillReceiveProps Received', nextProps.auth.res);
             this.setState({
-                _id: nextProps.auth.last().res.data._id,
-                username: nextProps.auth.last().res.data.email,
-                isAuthorized: nextProps.auth.last().res.data._id != 0 ? true : false,
+                _id: nextProps.auth.res.data._id,
+                username: nextProps.auth.res.data.email,
+                isAuthorized: nextProps.auth.res.data._id != 0 ? true : false,
             })
-            console.log('Court number',nextProps.court)
         }
     }
 
@@ -72,38 +67,20 @@ export default class LayHeader extends Component {
         });
     }
 
-
-
-    loginFormOpen() {
-        this.setState({
-            loginOpen: true
-        })
-    }
-
-    loginFormClose() {
-        this.setState({
-            loginOpen: false
-        })
-    }
-
-    registerFormOpen() {
-        this.setState({
-            registerOpen: true
-        })
-    }
-
-    registerFormClose() {
-        this.setState({
-            registerOpen: false
-        })
-    }
-
     handleNext = (e) => {
         this.props.nextDate(this.state.currentDate);
     }
 
     handlePrev = (e) => {
         this.props.previousDate(this.state.currentDate)
+    }
+
+    loginPage = (e) => {
+        this.props.loginPage(true);
+    }
+
+    registerPage = (e) => {
+        this.props.loginPage(true);
     }
 
     getWeekDayNames = function(date) {
@@ -126,37 +103,10 @@ export default class LayHeader extends Component {
         this.close();
     }
 
-    enableButton() {
-        this.setState({
-            canSubmit: true
-        });
-    }
-
-    disableButton() {
-        this.setState({
-            canSubmit: false
-        });
-    }
-
-    submit(model) {
-        console.log('auth data', model)
-        this.props.login(model);
-        this.loginFormClose();
-    }
-
-    submitRegister(model) {
-        console.log('register data', model)
-        this.props.register(model);
-        this.registerFormClose();
-    }
 
     logout() {
         this.props.logout()
 
-    }
-
-    loginPage = (e) => {
-        this.props.loginPage(true);
     }
 
     render() {
@@ -211,10 +161,8 @@ export default class LayHeader extends Component {
 
                         <div className="phone_num">{this.state.userPhone}</div>
                         <div className={this.state.isAuthorized ? "icon_phone" : "unAuthorized" } ></div>
-                        <div className={this.state.isAuthorized ? "unAuthorized" : "loginLink" } onClick={this.loginFormOpen}>Вход</div><br/>
-                        <div className={this.state.isAuthorized ? "unAuthorized" : "reglink" }  onClick={this.registerFormOpen}>Регистрация</div>
-                        <div className={this.state.isAuthorized ? "logoutLink" : "unAuthorized" } onClick={this.logout}>Выйти</div>
-                        <div className="enterLoginForm" onClick={this.loginPage}>Войти</div>
+                        <div className="enterLoginForm" onClick={this.state.isAuthorized ? this.logout : this.loginPage}>
+                            {this.state.isAuthorized ? "Выйти" : "Войти"}</div>
                         <div className="rocket"></div>
                     </div>
                 </div>
@@ -229,35 +177,6 @@ export default class LayHeader extends Component {
                         date={this.state.currentDate}
                         onChange={this.onChange}
                     />
-                </Modal>
-                <Modal
-                    containerStyle={{ background: 'white', width: '345px',height: '200px', padding: 2, borderRadius:'6px'}}
-                    closeOnOuterClick={true}
-                    show={this.state.loginOpen}
-                    onClose={this.loginFormClose}
-                >
-                    <div className="form__header">Введите логин и пароль
-                    </div>
-                    <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите email" name="email" required/><br/>
-                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" required />
-                        <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
-                    </Formsy.Form>
-                </Modal>
-
-                <Modal
-                    containerStyle={{ background: 'white', width: '345px',height: '200px', padding: 2, borderRadius:'6px'}}
-                    closeOnOuterClick={true}
-                    show={this.state.registerOpen}
-                    onClose={this.registerFormClose}
-                >
-                    <div className="form__header">Регистрация. Введите логин и пароль
-                    </div>
-                    <Formsy.Form onValidSubmit={this.submitRegister} onValid={this.enableButton} onInvalid={this.disableButton}>
-                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Введите email" name="email" required/><br/>
-                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите пароль" name="password" required />
-                        <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
-                    </Formsy.Form>
                 </Modal>
             </div>
 

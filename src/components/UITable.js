@@ -60,6 +60,7 @@ class UITable extends Component {
             currentUIRowStatus: null,
         };
         autobind(this);
+        console.log('UITable constructor')
     }
 
     componentWillUpdate(nextProps) {

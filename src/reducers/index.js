@@ -1,10 +1,10 @@
 import todoss from './ToDoReducer';
 import auth from './AuthReducer';
-import loginForm from './LoginFormReducer'
+import loginPage from './LoginPageReducer'
 
 export {
     todoss,
     auth,
-    loginForm
+    loginPage
 }
 
