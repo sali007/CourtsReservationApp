@@ -1,0 +1,47 @@
+.registerOrLogin {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.registerOrLogin form {
+    display: inline-block;
+    margin: 2px;
+}
+
+.form_header {
+    margin: 10px;
+}
+
+.form_header a {
+    margin-left: 10px;
+}
+
+.form_header a:hover {
+    color: #ffa066;
+}
+
+.active {
+    color: #ffa066;
+}
+
+.inactive {
+    color: #979797;
+}
+
+.registerOrLogin form input {
+    width: 200px;
+    height: 30px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.form__button--submit:last-child {
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
