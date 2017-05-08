@@ -4,6 +4,6 @@ require('babel-polyfill');
 require('server.js');
 
 //pm2 nginx
-//export NODE_PATH=./server/ && pm2 start index.js
+//export NODE_PATH=./server/ && pm2 start middleware.js
 
 

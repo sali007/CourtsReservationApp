@@ -1,14 +1,17 @@
+import { combineReducers } from 'redux';
+
+import * as types from '../types'
 import { List } from 'immutable';
 
 const defaultState = false;
 
 export default function AuthReducer(state = defaultState, action) {
     switch(action.type) {
-        case 'LOGIN':
+        case types.LOGIN:
             return action;
-        case 'REGISTER':
+        case types.REGISTER:
             return action;
-        case 'LOGOUT':
+        case types.LOGOUT:
             return action;
 
         default:

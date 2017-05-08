@@ -5,7 +5,7 @@ var path               = require('path');
 var ExtractTextPlugin  = require('extract-text-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var publicPath         = 'http://95.85.13.42:80/public/assets/';
+var publicPath         = '/public/assets/';
 var cssName            = process.env.NODE_ENV === 'production' ? 'styles.css' : 'styles.css';
 var jsName             = process.env.NODE_ENV === 'production' ? 'bundle.js' : 'bundle.js';
 

@@ -27,12 +27,17 @@ export default class Layout extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            isAuthorized: false
+            isAuthorized: false,
+            user: {
+                user_id: 0,
+                username: 'Гость'
+            }
         }
     }
 
     componentWillUpdate(nextProps) {
         console.log('Layout. ComponentWillUpdate', nextProps);
+
     }
 
 

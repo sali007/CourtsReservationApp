@@ -50,7 +50,7 @@ export default class LayHeader extends Component {
             this.setState({
                 _id: nextProps.auth.res.data._id,
                 username: nextProps.auth.res.data.email,
-                isAuthorized: nextProps.auth.res.data._id != 0 ? true : false,
+                isAuthorized: nextProps.auth.res.data.authState ? true : false,
             })
         }
     }
@@ -66,6 +66,11 @@ export default class LayHeader extends Component {
             open: false,
         });
     }
+
+    handleDefault = (e) => {
+
+    }
+
 
     handleNext = (e) => {
         this.props.nextDate(this.state.currentDate);

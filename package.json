@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "NODE_ENV='production' webpack -p",
-    "webpack-devserver": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 80 --host 127.0.0.1",
+    "webpack-devserver": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8080 --host 127.0.0.1",
     "nodemon": "NODE_PATH=./server nodemon index.js"
   },
   "author": "",
@@ -50,13 +50,16 @@
     "react-dates": "^9.0.0",
     "react-day-picker": "^5.2.0",
     "react-dom": "^15.3.1",
+    "react-helmet": "^5.0.3",
     "react-moment": "^0.2.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-bootstrap": "^0.23.1",
+    "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
+    "redux-logger": "^3.0.1",
     "redux-oauth": "^2.0.5",
-    "redux-thunk": "^2.1.0",
+    "redux-thunk": "^2.2.0",
     "req-flash": "0.0.3",
     "simple-react-modal": "^0.5.1",
     "superagent": "^3.5.2"

@@ -1,3 +1,5 @@
+import * as types from '../types'
+
 export default function promiseMiddleware() {
     return next => action => {
         const { promise, type, ...rest } = action;
@@ -5,8 +7,8 @@ export default function promiseMiddleware() {
         if (!promise) return next(action);
 
         const SUCCESS = type;
-        const REQUEST = type + '_REQUEST';
-        const FAILURE = type + '_FAILURE';
+        const REQUEST = type + '_' + types.CREATE_REQUEST;
+        const FAILURE = type + '_' + types.CREATE_FAILURE;
         next({ ...rest, type: REQUEST });
         return promise
                 .then(res => {
