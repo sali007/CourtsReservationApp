@@ -3,8 +3,10 @@ import { routerReducer as routing } from 'react-router-redux';
 import * as types from '../types';
 
 import todoss from './ToDoReducer';
-import auth from './AuthReducer';
-import loginPage from './LoginPageReducer'
+import user from './AuthReducer';
+import loginPage from './LoginPageReducer';
+import message from './message'
+
 
 const isFetching = (state = false, action) => {
     switch (action.type) {
@@ -23,8 +25,10 @@ const isFetching = (state = false, action) => {
 const rootReducer = combineReducers({
     isFetching,
     todoss,
-    auth,
-    routing
+    user,
+    loginPage,
+    routing,
+    message
 });
 
 export default rootReducer;

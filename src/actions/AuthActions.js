@@ -1,38 +1,122 @@
+import { polyfill } from 'es6-promise';
 import request from 'axios';
+import { push } from 'react-router-redux';
+
+import * as types from '../types';
+
+polyfill();
+
+const getMessage = res => res.response && res.response.data && res.response.data.message;
+
+function makeUserRequest(method, data, api = '/login') {
+    return request[method](api, data);
+}
 
 
-const URL_LOGIN = 'http://127.0.0.1:3001/login';
-const URL_REGISTER = 'http://127.0.0.1:3001/signUp';
-const URL_LOGOUT = 'http://127.0.0.1:3001/logout';
+// Log In Action Creators
+export function beginLogin() {
+    return { type: types.MANUAL_LOGIN_USER };
+}
 
-
-export function register(data) {
+export function loginSuccess(message) {
     return {
-        type: 'REGISTER',
-        promise: request.post(URL_REGISTER,
-            { email:data.email,
-              password: data.password
-            }
-            )
+        type: types.LOGIN_SUCCESS_USER,
+        message
     };
 }
 
-export function login(data) {
-
+export function loginError(message) {
     return {
-        type: 'LOGIN',
-        promise: request.post(URL_LOGIN, {
-            email: data.email,
-            password: data.password} ),
+        type: types.LOGIN_ERROR_USER,
+        message
     };
 }
 
-export function logout() {
+// Sign Up Action Creators
+export function signUpError(message) {
     return {
-        type: 'LOGOUT',
-        promise: request.post(URL_LOGOUT)
-    }
+        type: types.SIGNUP_ERROR_USER,
+        message
+    };
 }
 
+export function beginSignUp() {
+    return { type: types.SIGNUP_USER };
+}
 
+export function signUpSuccess(message) {
+    return {
+        type: types.SIGNUP_SUCCESS_USER,
+        message
+    };
+}
 
+// Log Out Action Creators
+export function beginLogout() {
+    return { type: types.LOGOUT_USER};
+}
+
+export function logoutSuccess() {
+    return { type: types.LOGOUT_SUCCESS_USER };
+}
+
+export function logoutError() {
+    return { type: types.LOGOUT_ERROR_USER };
+}
+
+export function toggleLoginMode() {
+    return { type: types.TOGGLE_LOGIN_MODE };
+}
+
+export function manualLogin(data) {
+    return (dispatch) => {
+        dispatch(beginLogin());
+
+        return makeUserRequest('post', data, '/login')
+            .then((response) => {
+                if (response.status === 200) {
+                    dispatch(loginSuccess(response.data.message));
+                    dispatch(push('/'));
+                } else {
+                    dispatch(loginError('Oops! Something went wrong!'));
+                }
+            })
+            .catch((err) => {
+                dispatch(loginError(getMessage(err)));
+            });
+    };
+}
+
+export function signUp(data) {
+    return (dispatch) => {
+        dispatch(beginSignUp());
+
+        return makeUserRequest('post', data, '/signup')
+            .then((response) => {
+                if (response.status === 200) {
+                    dispatch(signUpSuccess(response.data.message));
+                    dispatch(push('/'));
+                } else {
+                    dispatch(signUpError('Oops! Something went wrong'));
+                }
+            })
+            .catch((err) => {
+                dispatch(signUpError(getMessage(err)));
+            });
+    };
+}
+
+export function logOut() {
+    return (dispatch) => {
+        dispatch(beginLogout());
+
+        return makeUserRequest('post', null, '/logout')
+            .then((response) => {
+                if (response.status === 200) {
+                    dispatch(logoutSuccess());
+                } else {
+                    dispatch(logoutError());
+                }
+            });
+    };
+}

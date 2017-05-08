@@ -44,6 +44,7 @@
     border-top: none !important;
     border-bottom: none !important;
     box-shadow: none !important;
+    cursor: pointer;
 }
 .UITable tbody tr.hiden {
     background-color: #92C3E4 !important;

@@ -1,17 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { IndexRoute, Route} from 'react-router';
 
 import App from './components/App';
+import LoginOrRegister from './components/LoginOrRegister'
+import AdminLogin from './components/AdminLogin';
 
-
-export default (
-        <Route path="/">
-            <IndexRoute component={App} />
-            <Route path="admin" component={App} />
-        </Route>
-)
-
-/*export default (store) => {
+export default (store) => {
     const requireAuth = (nextState, replace, callback) => {
         const {user: {authenticated}} = store.getState();
         if (!authenticated) {
@@ -27,7 +21,7 @@ export default (
         const {user: {authenticated}} = store.getState();
         if (authenticated) {
             replace({
-                pathname: '/'
+                pathname: '/admin'
             });
         }
         callback();
@@ -35,7 +29,8 @@ export default (
     return (
         <Route path="/">
             <IndexRoute component={App}/>
-            <Route path="admin" component={App}/>
+            <Route path="login" component={AdminLogin} onEnter={redirectAuth}/>
+            <Route path="admin" components={App} onEnter={requireAuth}/>
         </Route>
     );
-};*/
+};

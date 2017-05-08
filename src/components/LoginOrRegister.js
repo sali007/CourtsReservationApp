@@ -4,6 +4,7 @@ import Formsy from 'formsy-react';
 import { observer } from 'mobx-react';
 
 import './css/LoginOrRegister.css';
+import './css/App.css';
 
 export default class LoginOrRegister extends Component {
     constructor(props, context) {
@@ -24,6 +25,10 @@ export default class LoginOrRegister extends Component {
 
     componentWillUpdate(nextProps) {
         console.log('LoginOrRegister ComponentWillUpdate', nextProps)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('LoginOrRegister ComponentWillReceiveProps', nextProps)
     }
 
     cancelLoginPage = (e) => {
@@ -49,8 +54,7 @@ export default class LoginOrRegister extends Component {
 
         console.log('LoginOrRegister registerForm')
         this.setState({
-            loginFormLink: false,
-            registerFormLink: true
+            loginFormLink: true
         })
     }
 
@@ -66,14 +70,14 @@ export default class LoginOrRegister extends Component {
 
         } else
         {
-            this.props.login(model);
+            this.props.manualLogin(model);
             this.props.loginPage(false);
         }
     }
 
     render() {
         return (
-            <div>
+            <div className="App">
               <div className="registerOrLogin">
                   <div className="form_header">
                   <a className={this.state.registerFormLink ? 'active':'inactive'} onClick={this.registerForm}>{this.state.regTitle}</a >

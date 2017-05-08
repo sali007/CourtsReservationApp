@@ -1,53 +1,78 @@
 import request from 'axios';
+import { push } from 'react-router-redux';
+import { universalService } from '../service';
+
+import * as types from '../types';
 
 
 const URL = 'http://127.0.0.1:3001/reservation';
 const ADD_RESERVATION_URL = 'http://127.0.0.1:3001/addReservation';
 
 
-export function nextDate(date) {
-    let d = new Date(date)
-        .setDate(new Date(date).getDate() + 1)
+function Date(date, data) {
     return {
-        type: 'NEXT_DATE',
-        date: d,
-        promise: request.post(URL, { date:d} )
-    };
+        type: types.GET_DEFAULT_DATE,
+        date: date,
+        data: data
+    }
 }
 
-export function previousDate(date) {
-    let d = new Date(date)
-            .setDate(new Date(date).getDate() - 1);
+function Reserve(date, data) {
     return {
-        type: 'PREVIOUS_DATE',
-        promise: request.post(URL, { date:d} ),
-        date: d
+        type: types.ADD_RESERVATION,
+        date: date,
+        data: data
+    }
+}
+
+
+export function addReserve(id, date, court, username, userPhone, hour, summ, status) {
+    console.log('COurt number', court)
+    let reservation = {
+        id:id,
+        date: date,
+        court:court,
+        userInfo: username,
+        userPhone: userPhone,
+        summ: summ,
+        hour: hour,
+        status: status
     };
+    return (dispatch, getState) => {
+        return universalService().addReserve({
+            id:id,
+            date: date,
+            court:court,
+            userInfo: username,
+            userPhone: userPhone,
+            summ: summ,
+            hour: hour,
+            status: status
+        }).then((res) => {
+            console.log('response of addReserve', res.status == 200)
+            if (res.status == 200) {
+                dispatch(Reserve(date,res.data))
+            }
+        })
+            .catch(() => {
+                console.log({ date, error: 'Oops! Something went wrong and we couldn\'t add reservation'});
+            });
+    }
 }
 
 export function getDefaultDate(date) {
-    return {
-        type: 'GET_DEFAULT_DATE',
-        date: date,
-        promise:request.post(URL, { date:date} )
+    return (dispatch, getState) => {
+
+        return universalService().getDefaultDate({date}).then((res) => {
+            console.log('response of getDefaultDate', res.status == 200)
+            if (res.status == 200) {
+                dispatch(Date(date,res.data))
+            }
+        })
+        .catch(() => {
+            console.log({ date, error: 'Oops! Something went wrong and we couldn\'t get daf date'});
+        });
     }
 }
 
-export function addReserve(id, date, court, username, userPhone, hour, summ, status) {
-    return {
-        type: 'ADD_RESERVATION',
-        date: date,
-        promise: request.post( ADD_RESERVATION_URL,
-            {
-               id:id,
-               date: date,
-               court:court,
-               userInfo: username,
-               userPhone: userPhone,
-               summ: summ,
-               hour: hour,
-               status: status
-            })
-    }
-}
 

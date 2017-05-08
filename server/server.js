@@ -17,7 +17,7 @@ InitExpress(app);
 
 InitRoutes(app, passport);
 
-//app.get('*', renderMiddleware);
+app.get('*', renderMiddleware);
 
 app.listen(app.get('port'), () => {
     console.log(`Server listening on: ${app.get('port')}`);

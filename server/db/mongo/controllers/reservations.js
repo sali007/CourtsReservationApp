@@ -67,6 +67,7 @@ function courtForming(reservations, d) {
 }
 
 export function getReservations(req, res) {
+    console.log('getReservations req.data', req.body)
     let date = req.body.date != undefined ? new Date(req.body.date) : new Date(),
         day = date.getDate(),
         month = date.getMonth(),
@@ -117,7 +118,7 @@ export function add(req, res) {
             status: 'holden'
         }
 
-        console.log('Add request body');
+        console.log('Add request body for court ',req.body);
 
 
 

@@ -1,12 +1,8 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import promiseMiddleware from '../middleware/promiseMiddleware'
 import { createLogger } from 'redux-logger';
-import * as reducers from '../reducers/';
-//import rootReducer from '../reducers/rootReducer';
-import { routerReducer as routing } from 'react-router-redux';
-
+import rootReducer from '../reducers/rootReducer';
 
 /*
  * @param {Object} initial state to bootstrap our stores with for server-side rendering
@@ -17,7 +13,7 @@ import { routerReducer as routing } from 'react-router-redux';
 export default function configureStore(initialState, history) {
     // Installs hooks that always keep react-router and redux store in sync
     const middleware = [thunk, routerMiddleware(history) ];
-    //let store;
+    let store;
 
     /*if (isClient && isDebug) {
         middleware.push(createLogger());
@@ -26,16 +22,15 @@ export default function configureStore(initialState, history) {
             typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
         ));*/
    // } else {
-   /*     const reducer = combineReducers(reducers);
+    //const reducer = combineReducers(reducers);
     middleware.push(createLogger());
     store = createStore(rootReducer, initialState, compose(
         applyMiddleware(...middleware),
         typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
-    ))*/
-
-        //store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), f => f));
-    const reducer = combineReducers(reducers);
-    const store = applyMiddleware(promiseMiddleware)(createStore)(reducer, initialState);
+    ))
+    //store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), f => f));
+    //const reducer = combineReducers(reducers);
+    //const store = applyMiddleware(promiseMiddleware)(createStore)(reducer, initialState);
 
     // }
 

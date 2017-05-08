@@ -6,7 +6,7 @@ import { observable, computed, autorun, action } from 'mobx';
 
 const courts = [
     {
-        court: 1,
+        court: 0,
         status: 'ready',
         data: [
             {
@@ -146,7 +146,7 @@ const courts = [
     },
 
     {
-        court: 2,
+        court: 1,
         status: 'ready',
         data: [
             {

@@ -44,13 +44,13 @@ export default class LayHeader extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        console.log('LayHeader ComponentWillReceiveProps Received', nextProps);
         if (nextProps.auth) {
-            console.log('LayHeader ComponentWillReceiveProps Received', nextProps.auth.res);
+            console.log('LayHeader ComponentWillReceiveProps Received', nextProps.auth);
             this.setState({
                 _id: nextProps.auth.res.data._id,
                 username: nextProps.auth.res.data.email,
-                isAuthorized: nextProps.auth.res.data.authState ? true : false,
+                //isAuthorized: nextProps.auth.res.data.authState ? true : false,
             })
         }
     }
@@ -73,11 +73,17 @@ export default class LayHeader extends Component {
 
 
     handleNext = (e) => {
-        this.props.nextDate(this.state.currentDate);
+        console.log('handleNext',this.state.currentDate )
+        let d = new Date(this.state.currentDate)
+            .setDate(new Date(this.state.currentDate).getDate() + 1);
+        this.props.getDefaultDate(d);
     }
 
     handlePrev = (e) => {
-        this.props.previousDate(this.state.currentDate)
+        console.log('handlePrev',this.state.currentDate )
+        let d = new Date(this.state.currentDate)
+            .setDate(new Date(this.state.currentDate).getDate() - 1);
+        this.props.getDefaultDate(d);
     }
 
     loginPage = (e) => {

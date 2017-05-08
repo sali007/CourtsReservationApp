@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as TodoActions from '../actions/ToDoActions';
 import * as AuthAction from '../actions/AuthActions';
 import * as LoginPageActions from '../actions/LoginPageActions';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import { observer } from 'mobx-react';
 import { IndexRoute, Router, Route, Link, browserHistory, hashHistory } from 'react-router';
@@ -26,18 +26,11 @@ import './css/RD.css';
 export default class Layout extends Component {
     constructor(props) {
         super(props);
-        this.state ={
-            isAuthorized: false,
-            user: {
-                user_id: 0,
-                username: 'Гость'
-            }
-        }
+        console.log('Layout. Constructor', props);
     }
 
     componentWillUpdate(nextProps) {
         console.log('Layout. ComponentWillUpdate', nextProps);
-
     }
 
 
@@ -47,20 +40,16 @@ export default class Layout extends Component {
         return (
             <div className="App">
                 <LayHeader todos={todos}
-                           auth={auth}
-                           loginP={loginPage}
+                           loginPage={loginPage}
                            {...bindActionCreators(TodoActions, dispatch)}
                            {...bindActionCreators(AuthAction, dispatch)}
                            {...bindActionCreators(LoginPageActions, dispatch)}/>
-
-                { loginPage.state ?
-                    <LoginOrRegister auth={auth}
-                                     {...bindActionCreators(TodoActions, dispatch)}
+                {
+                    loginPage.state ?
+                    <LoginOrRegister loginPage={loginPage}
                                      {...bindActionCreators(AuthAction, dispatch)}
-                                     {...bindActionCreators(LoginPageActions, dispatch)}
-                    /> : ''
+                                     {...bindActionCreators(LoginPageActions, dispatch)}/> : ''
                 }
-
                 <div className='flexcontainer'>
                     <UITable todos={todos}
                                  court={0}
@@ -70,7 +59,9 @@ export default class Layout extends Component {
                                  court={1}
                                  {...bindActionCreators(TodoActions, dispatch)}
                     />
+
                 </div>
+
                 <LayFooter />
             </div>
         );
