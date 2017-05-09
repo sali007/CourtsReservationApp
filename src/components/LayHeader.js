@@ -12,10 +12,8 @@ export default class LayHeader extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAdmin: false,
-            authenticated: false,
-            userName: 'Гость',
-            adminUserName: 'Администратор',
+            isAuthorized: false,
+            username: 'Гость',
             userId: 0,
             userPhone: '',
             currentDate: null,
@@ -46,14 +44,13 @@ export default class LayHeader extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('LayHeader ComponentWillReceiveProps Received', nextProps);
-        if (nextProps.user) {
-            console.log('LayHeader ComponentWillReceiveProps Received', nextProps.user);
+
+        if (nextProps.auth) {
+            console.log('LayHeader ComponentWillReceiveProps Received', nextProps.auth.res);
             this.setState({
-                isAdmin: nextProps.admin,
-                //_id: nextProps.auth.res.data._id,
-                //username: nextProps.auth.res.data.email,
-                authenticated: nextProps.user.authenticated
+                _id: nextProps.auth.res.data._id,
+                username: nextProps.auth.res.data.email,
+                isAuthorized: nextProps.auth.res.data._id != 0 ? true : false,
             })
         }
     }
@@ -70,23 +67,12 @@ export default class LayHeader extends Component {
         });
     }
 
-    handleDefault = (e) => {
-
-    }
-
     handleNext = (e) => {
-        console.log('handleNext prev. date',new Date(this.state.currentDate)  )
-        let d = new Date(this.state.currentDate)
-            .setDate(new Date(this.state.currentDate).getDate() + 1);
-        console.log('handleNext next date',new Date(d))
-        this.props.getDefaultDate(d);
+        this.props.nextDate(this.state.currentDate);
     }
 
     handlePrev = (e) => {
-        console.log('handlePrev',this.state.currentDate )
-        let d = new Date(this.state.currentDate)
-            .setDate(new Date(this.state.currentDate).getDate() - 1);
-        this.props.getDefaultDate(d);
+        this.props.previousDate(this.state.currentDate)
     }
 
     loginPage = (e) => {
@@ -119,8 +105,7 @@ export default class LayHeader extends Component {
 
 
     logout() {
-        console.log('LayHeader logout', this.props)
-        this.props.logOut(this.state.isAdmin);
+        this.props.logout()
 
     }
 
@@ -172,14 +157,12 @@ export default class LayHeader extends Component {
                     </div>
 
                     <div className=" item__user_info">
-                        <div className="greeting"><p>Привет, {this.state.isAdmin ? this.state.adminUserName : this.state.username}!</p></div>
+                        <div className="greeting"><p>Привет, {this.state.username}!</p></div>
 
                         <div className="phone_num">{this.state.userPhone}</div>
-                        { this.state.isAdmin ? '' :
-                            <div className={this.state.authenticated ? "icon_phone" : "unAuthorized" }></div>
-                        }
-                        <div className="enterLoginForm" onClick={this.state.authenticated ? this.logout : this.loginPage}>
-                            {this.state.authenticated ? "Выйти" : "Войти"}</div>
+                        <div className={this.state.isAuthorized ? "icon_phone" : "unAuthorized" } ></div>
+                        <div className="enterLoginForm" onClick={this.state.isAuthorized ? this.logout : this.loginPage}>
+                            {this.state.isAuthorized ? "Выйти" : "Войти"}</div>
                         <div className="rocket"></div>
                     </div>
                 </div>

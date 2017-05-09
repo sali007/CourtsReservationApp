@@ -4,14 +4,12 @@ import Formsy from 'formsy-react';
 import { observer } from 'mobx-react';
 
 import './css/LoginOrRegister.css';
-import './css/App.css';
 
 export default class LoginOrRegister extends Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            errorMessage: '',
             regTitle: 'Регистрация',
             logTitle: 'Авторизация',
             isAuthorizes: false,
@@ -26,13 +24,6 @@ export default class LoginOrRegister extends Component {
 
     componentWillUpdate(nextProps) {
         console.log('LoginOrRegister ComponentWillUpdate', nextProps)
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log('LoginOrRegister ComponentWillReceiveProps', nextProps)
-        this.setState({
-            errorMessage: nextProps.user.message
-        })
     }
 
     cancelLoginPage = (e) => {
@@ -75,14 +66,14 @@ export default class LoginOrRegister extends Component {
 
         } else
         {
-            this.props.manualLogin(model, false);
+            this.props.login(model);
             this.props.loginPage(false);
         }
     }
 
     render() {
         return (
-            <div className="App">
+            <div>
               <div className="registerOrLogin">
                   <div className="form_header">
                   <a className={this.state.registerFormLink ? 'active':'inactive'} onClick={this.registerForm}>{this.state.regTitle}</a >
@@ -94,7 +85,6 @@ export default class LoginOrRegister extends Component {
                       <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
                       <button className="form__button--submit" type="submit" onClick={this.cancelLoginPage}>Отмена</button>
                  </Formsy.Form>
-                  <div className="error">{this.state.errorMessage}</div>
               </div>
             </div>
         )

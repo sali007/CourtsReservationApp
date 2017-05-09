@@ -1,37 +1,23 @@
-import React from 'react';
-import { IndexRoute, Route} from 'react-router';
+import React, { Component, PropTypes } from 'react';
 
-import App from './components/App';
-import LayoutAdmin from './components/LayoutAdmin';
-import LayFooter from './components/LayFooter';
-import AdminLogin from './components/AdminLogin';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-export default (store) => {
-    const requireAuth = (nextState, replace, callback) => {
-        const {user: {authenticated}} = store.getState();
-        if (!authenticated) {
-            replace({
-                pathname: '/login',
-                state: {nextPathname: nextState.location.pathname}
-            });
-        }
-        callback();
-    };
+import { observer } from 'mobx-react';
+import { IndexRoute, Router, Route, Link, browserHistory, hashHistory } from 'react-router';
 
-    const redirectAuth = (nextState, replace, callback) => {
-        const {user: {authenticated}} = store.getState();
-        if (authenticated) {
-            replace({
-                pathname: '/admin'
-            });
-        }
-        callback();
-    };
-    return (
-        <Route path="/">
-            <IndexRoute component={App}/>
-            <Route path="login" component={AdminLogin} onEnter={redirectAuth}/>
-            <Route path="admin" components={LayoutAdmin} onEnter={requireAuth}/>
+
+import Notfound from './components/Notfound';
+import Layout from './components/Layout';
+import UITable from './components/UITable'
+
+export default (
+        <Route path="/" history={browserHistory} component={Layout}>
+            <IndexRoute component={Layout} />
+            <Route path="reservation" history={browserHistory} component={Layout}/>
+            <Route path="register" component={Layout}/>
+            <Route path="login" component={Layout}/>
+            <Route path="admin" component={Layout}/>
+            <Route path="logout" component={Layout}/>
         </Route>
-    );
-};
+)

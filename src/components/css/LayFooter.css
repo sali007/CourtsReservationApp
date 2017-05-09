@@ -16,13 +16,3 @@
     margin-right: auto;
     width: 320px;
 }
-
-.LayFooter__main a {
-    color: #ffa066;
-    cursor: pointer;
-}
-
-.LayFooter__main a:hover {
-    color: white;
-}
-

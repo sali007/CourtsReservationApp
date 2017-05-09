@@ -44,7 +44,6 @@
     border-top: none !important;
     border-bottom: none !important;
     box-shadow: none !important;
-    cursor: pointer;
 }
 .UITable tbody tr.hiden {
     background-color: #92C3E4 !important;
@@ -141,18 +140,6 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
-
-.UIpic__reserved {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    background: url(../../../court-static/icons/reserved.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
 .UIpic__free {
     margin: 0 !important;
     padding: 0 !important;
@@ -297,14 +284,4 @@ button[disabled], html input[disabled] {
 .__react_component_tooltip {
     pointer-events: auto !important;
     z-index: 999;
-}
-
-
-
-
-.UITable tbody tr.holden_admin {
-    background-color: #d78434 !important;
-}
-.UITable tbody tr.holden_admin:hover, .UITable tbody tr.hiden:hover {
-    background-color: #c37431 !important;
 }

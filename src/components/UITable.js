@@ -22,14 +22,12 @@ class UIRow extends Component {
         holden: 'Арендовано',
         free: 'Свободно',
         hiden: 'Арендовано на долгий срок',
-        confirmed: 'Арендовано'
     }
 
     icons = {
         holden: 'UIpic__leased',
         free: 'UIpic__free',
-        hiden: 'UIpic__playball',
-        confirmed: ''
+        hiden: 'UIpic__playball'
     }
 
     render() {
@@ -55,7 +53,7 @@ class UITable extends Component {
             slot: '',
             hour: '',
             value: '',
-            court: null,
+            court: '',
             _id: 0,
             date: null,
             schedule: null,
@@ -67,10 +65,8 @@ class UITable extends Component {
 
     componentWillUpdate(nextProps) {
         if(this.props !== nextProps) {
-            console.log('UITable componentWillUpdate', nextProps)
             this.setState({
                 date: nextProps.todos.last().date,
-                court: nextProps.court
             })
         }
     }
@@ -78,15 +74,15 @@ class UITable extends Component {
     componentWillReceiveProps(nextProps) {
         if(this.props !== nextProps) {
 
-                console.log('UITABLE ComponentWillReceiveProps Received', nextProps.todos.last());
+                console.log('UITABLE ComponentWillReceiveProps Received', nextProps.todos.last().res.data);
                 this.setState({
                     date: nextProps.todos.last().date,
-                    _id: nextProps.todos.last().data[nextProps.court]._id,
-                    schedule: nextProps.todos.last().data[nextProps.court].data,
-                    court: nextProps.todos.last().data[nextProps.court].court
+                    _id: nextProps.todos.last().res.data[nextProps.court]._id,
+                    schedule: nextProps.todos.last().res.data[nextProps.court].data,
+                    court: nextProps.court
                 })
             console.log('Court number',nextProps.court);
-            console.log('Court object id', nextProps.todos.last().data[nextProps.court]._id)
+            console.log('Court object id', nextProps.todos.last().res.data[nextProps.court]._id)
         }
     }
 
@@ -113,7 +109,6 @@ class UITable extends Component {
     }
 
     showed(slot) {
-        console.log('Court number', this.state.court)
         if(slot.status == 'holden') {
             this.setState({
                 openErr: open
@@ -155,7 +150,7 @@ class UITable extends Component {
             this.state.value,
             this.state.currentUIRowStatus.status
         )
-        //this.props.getDefaultDate(this.state.date);
+        this.props.getDefaultDate(this.state.date);
         this.close(true);
     }
     render() {

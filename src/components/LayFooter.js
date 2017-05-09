@@ -12,49 +12,70 @@ class LayFooter extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            isAdmin: false,
-            authenticated: false,
             open: false,
             canSubmit: true,
             slot: '',
         };
         autobind(this);
     }
-
-    componentWillUpdate(nextProps) {
-        console.log('LayFooter ComponentWillUpdate', nextProps)
-        if(nextProps != this.props) {
-            this.setState({
-                authenticated: nextProps.user.authenticated
+    close() {
+        console.log('close', this.state);
+        this.setState({
+            open: false,
+        });
+    }
+    show() {
+        console.log('show', this.state);
+        this.setState({
+            open: true,
+        });
+    }
+    showed(slot) {
+        console.log('show slot', slot);
+        this.setState({
+            open: true,
+            slot: slot.timeslot,
+        });
+    }
+    enableButton() {
+        this.setState({
+            canSubmit: true
+        });
+    }
+    disableButton() {
+        this.setState({
+            canSubmit: false
+        });
+    }
+    submit(model) {
+        console.log('login', model.username, model.password);
+        fetch(this.props.store.domain + '/', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify({
+                username: model.username,
+                password: model.password
             })
-        }
+        }).then(
+            function (d) {
+                d.json().then(function (data) {
+                    console.log('fetch post', data);
+                });
+            }
+        );
+        this.close();
     }
-
-    componentWillReceiveProps(nextProps) {
-        console.log('LayFooter ComponentWillReceiveProps', nextProps)
-        if (nextProps != this.props) {
-            this.setState({
-                isAdmin: nextProps.admin,
-                authenticated: nextProps.user.authenticated
-            })
-        }
+    redirect() {
+        window.location.href = this.props.store.vision_href;
     }
-
-    logout() {
-        console.log('LayHeader logout', this.props)
-        this.props.logOut(this.state.isAdmin);
-
+    login() {
+        console.log('login');
     }
-
-    loginPage = (e) => {
-        this.props.loginPage(true);
-    }
-
     render() {
 
         return (
             <div className="LayFooter">
-                <div className="LayFooter__main">Аренда теннисных кортов <a onClick={this.state.authenticated == true ? this.logout : this.loginPage}>{this.state.authenticated == true ? "Выйти" : "Войти"}</a></div>
+                <div className="LayFooter__main">Аренда теннисных кортов<spam></spam></div>
             </div>
         );
     }

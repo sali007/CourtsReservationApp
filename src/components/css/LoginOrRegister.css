@@ -27,12 +27,10 @@
 
 .active {
     color: #ffa066;
-    cursor: pointer;
 }
 
 .inactive {
     color: #979797;
-    cursor: pointer;
 }
 
 .registerOrLogin form input {

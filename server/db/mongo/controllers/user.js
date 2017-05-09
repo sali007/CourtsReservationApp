@@ -18,11 +18,9 @@ export function login(req, res, next) {
             if (loginErr) return res.status(401).json({ message: loginErr });
 
             console.log(req.isAuthenticated())
-
-
+            //
             return res.status(200).json({
-                message: 'You have been successfully logged in.',
-                authState: req.isAuthenticated()
+                message: 'You have been successfully logged in.'
              });
         });
     })(req, res, next);
@@ -34,9 +32,7 @@ export function login(req, res, next) {
 export function logout(req, res) {
     // Do email and password validation for the server
     req.logout();
-    res.redirect('/').json({_id:0,
-        email: 'Гость',
-        authState: req.isAuthenticated()})
+    res.json({_id:0, email: 'Гость'})
 }
 
 /**
@@ -60,11 +56,7 @@ export function signUp(req, res, next) {
             if (saveErr) return next(saveErr);
             return req.logIn(user, (loginErr) => {
                 if (loginErr) return res.status(401).json({ message: loginErr });
-                return res.status(200).json({
-                    user,
-                    authState: req.isAuthenticated()
-                    }
-                );
+                return res.status(200).json(user);
             });
         });
     });

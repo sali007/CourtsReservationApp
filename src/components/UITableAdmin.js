@@ -1,9 +1,13 @@
+//'use strict';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import autobind from 'react-autobind';
 
-import ConfirmRegistrationForm from './ConfirmReservationForm';
+import moment from 'moment';
+import 'moment/locale/ru';
+import ax from 'superagent';
+
 import Formsy from 'formsy-react';
 import Modal, {closeStyle} from 'simple-react-modal';
 import './css/UITable.css';
@@ -15,24 +19,20 @@ class UIRow extends Component {
 
 
     statuses = {
-        holden: 'Бронь',
+        holden: 'Арендовано',
         free: 'Свободно',
         hiden: 'Арендовано на долгий срок',
-        confirmed: 'Арендовано'
-
     }
 
     icons = {
-        holden: 'UIpic__reserved',
+        holden: 'UIpic__leased',
         free: 'UIpic__free',
-        hiden: 'UIpic__playball',
-        confirmed: ''
+        hiden: 'UIpic__playball'
     }
 
     render() {
         return (
-            <tr className={this.props.data.status == 'holden' ? this.props.data.status + '_admin' : this.props.data.status}
-                onClick={this.props.showed.bind(null, this.props.data)}>
+            <tr className={this.props.data.status} onClick={this.props.showed.bind(null, this.props.data)}>
                 <th>{this.props.data.timeslot}</th>
                 <td>{this.props.data.value}  {this.statuses[this.props.data.status]}</td>
                 <td className="UIclear"><div className={this.icons[this.props.data.status]} /></td>
@@ -48,26 +48,24 @@ class UITable extends Component {
 
         this.state = {
             open: false,
+            openErr: false,
             canSubmit: true,
             slot: '',
             hour: '',
             value: '',
-            court: null,
+            court: '',
             _id: 0,
             date: null,
             schedule: null,
             currentUIRowStatus: null,
         };
         autobind(this);
-        console.log('UITable constructor')
     }
 
     componentWillUpdate(nextProps) {
         if(this.props !== nextProps) {
-            console.log('UITableAdmin componentWillUpdate', nextProps)
             this.setState({
                 date: nextProps.todos.last().date,
-                court: nextProps.court
             })
         }
     }
@@ -75,15 +73,15 @@ class UITable extends Component {
     componentWillReceiveProps(nextProps) {
         if(this.props !== nextProps) {
 
-            console.log('UITABLEAdmin ComponentWillReceiveProps Received', nextProps.todos.last());
-            this.setState({
-                date: nextProps.todos.last().date,
-                _id: nextProps.todos.last().data[nextProps.court]._id,
-                schedule: nextProps.todos.last().data[nextProps.court].data,
-                court: nextProps.todos.last().data[nextProps.court].court
-            })
+                console.log('UITABLE ComponentWillReceiveProps Received', nextProps.todos.last().res.data);
+                this.setState({
+                    date: nextProps.todos.last().date,
+                    _id: nextProps.todos.last().res.data[nextProps.court]._id,
+                    schedule: nextProps.todos.last().res.data[nextProps.court].data,
+                    court: nextProps.court
+                })
             console.log('Court number',nextProps.court);
-            console.log('Court object id', nextProps.todos.last().data[nextProps.court]._id)
+            console.log('Court object id', nextProps.todos.last().res.data[nextProps.court]._id)
         }
     }
 
@@ -110,7 +108,11 @@ class UITable extends Component {
     }
 
     showed(slot) {
-        console.log('Court number', this.state.court)
+        if(slot.status == 'holden') {
+            this.setState({
+                openErr: open
+            })
+        } else {
             console.log('show slot', slot);
             this.setState({
                 open: true,
@@ -120,6 +122,7 @@ class UITable extends Component {
                 court: this.state.court,
                 currentUIRowStatus: slot
             });
+        }
     }
     enableButton() {
         this.setState({
@@ -146,7 +149,7 @@ class UITable extends Component {
             this.state.value,
             this.state.currentUIRowStatus.status
         )
-        //this.props.getDefaultDate(this.state.date);
+        this.props.getDefaultDate(this.state.date);
         this.close(true);
     }
     render() {
@@ -167,25 +170,37 @@ class UITable extends Component {
 
                     {_.map(this.state.schedule, function (object, i) {
                         return <UIRow showed={_this.showed}
-                                      data={object}
-                                      key={object._id_}
-                        />;
+                                          data={object}
+                                          key={object._id_}
+                                          />;
                     })
                     }
                     </tbody>
                 </table>
-
                 <Modal
-                    containerStyle={{ background: 'grey',  padding: 0, borderRadius:'6px' }}
+                    containerStyle={{ background: 'white', width: '350px', padding: 0, borderRadius:'6px' }}
                     closeOnOuterClick={true}
                     show={this.state.open}
                     onClose={this.close}
                 >
-
-                    <ConfirmRegistrationForm date={this.state.date}
-                                             slot={this.state.slot}
-                                             price={this.state.value}
-                    />
+                    <div className="form__header">Чтобы записаться оставьте свои контактные данные
+                    </div>
+                    <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
+                        <MyOwnInput autoFocus={true} defStyle="smart__field--tel" placeholder="Напишите телефон для связи с Вами" name="phone" required/><br/>
+                        <MyOwnInput autoFocus={false} defStyle="smart__field--guest" placeholder="Введите имя и фамилию" name="username" />
+                        <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
+                    </Formsy.Form>
+                </Modal>
+                <Modal
+                    containerStyle={{ background: 'white', width: '350px', padding: 0, borderRadius:'6px' }}
+                    closeOnOuterClick={true}
+                    show={this.state.openErr}
+                    onClose={this.closeErr}
+                >
+                    <div className="form__header">Извините, но это время уже занято, выберите другое удобное для Вас.</div>
+                    <Formsy.Form onValid={this.enableButton}>
+                        <button className="form__button--submit" type="submit">Ok</button>
+                    </Formsy.Form>
                 </Modal>
             </div>
         );
