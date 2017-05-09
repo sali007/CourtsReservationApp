@@ -12,8 +12,10 @@ export default class LayHeader extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isAuthorized: false,
-            username: 'Гость',
+            isAdmin: false,
+            authenticated: false,
+            userName: 'Гость',
+            adminUserName: 'Администратор',
             userId: 0,
             userPhone: '',
             currentDate: null,
@@ -45,12 +47,13 @@ export default class LayHeader extends Component {
 
     componentWillReceiveProps(nextProps) {
         console.log('LayHeader ComponentWillReceiveProps Received', nextProps);
-        if (nextProps.auth) {
-            console.log('LayHeader ComponentWillReceiveProps Received', nextProps.auth);
+        if (nextProps.user) {
+            console.log('LayHeader ComponentWillReceiveProps Received', nextProps.user);
             this.setState({
-                _id: nextProps.auth.res.data._id,
-                username: nextProps.auth.res.data.email,
-                //isAuthorized: nextProps.auth.res.data.authState ? true : false,
+                isAdmin: nextProps.admin,
+                //_id: nextProps.auth.res.data._id,
+                //username: nextProps.auth.res.data.email,
+                authenticated: nextProps.user.authenticated
             })
         }
     }
@@ -71,11 +74,11 @@ export default class LayHeader extends Component {
 
     }
 
-
     handleNext = (e) => {
-        console.log('handleNext',this.state.currentDate )
+        console.log('handleNext prev. date',new Date(this.state.currentDate)  )
         let d = new Date(this.state.currentDate)
             .setDate(new Date(this.state.currentDate).getDate() + 1);
+        console.log('handleNext next date',new Date(d))
         this.props.getDefaultDate(d);
     }
 
@@ -116,7 +119,8 @@ export default class LayHeader extends Component {
 
 
     logout() {
-        this.props.logout()
+        console.log('LayHeader logout', this.props)
+        this.props.logOut(this.state.isAdmin);
 
     }
 
@@ -168,12 +172,14 @@ export default class LayHeader extends Component {
                     </div>
 
                     <div className=" item__user_info">
-                        <div className="greeting"><p>Привет, {this.state.username}!</p></div>
+                        <div className="greeting"><p>Привет, {this.state.isAdmin ? this.state.adminUserName : this.state.username}!</p></div>
 
                         <div className="phone_num">{this.state.userPhone}</div>
-                        <div className={this.state.isAuthorized ? "icon_phone" : "unAuthorized" } ></div>
-                        <div className="enterLoginForm" onClick={this.state.isAuthorized ? this.logout : this.loginPage}>
-                            {this.state.isAuthorized ? "Выйти" : "Войти"}</div>
+                        { this.state.isAdmin ? '' :
+                            <div className={this.state.authenticated ? "icon_phone" : "unAuthorized" }></div>
+                        }
+                        <div className="enterLoginForm" onClick={this.state.authenticated ? this.logout : this.loginPage}>
+                            {this.state.authenticated ? "Выйти" : "Войти"}</div>
                         <div className="rocket"></div>
                     </div>
                 </div>

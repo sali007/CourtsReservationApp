@@ -2,7 +2,8 @@ import React from 'react';
 import { IndexRoute, Route} from 'react-router';
 
 import App from './components/App';
-import LoginOrRegister from './components/LoginOrRegister'
+import LayoutAdmin from './components/LayoutAdmin';
+import LayFooter from './components/LayFooter';
 import AdminLogin from './components/AdminLogin';
 
 export default (store) => {
@@ -30,7 +31,7 @@ export default (store) => {
         <Route path="/">
             <IndexRoute component={App}/>
             <Route path="login" component={AdminLogin} onEnter={redirectAuth}/>
-            <Route path="admin" components={App} onEnter={requireAuth}/>
+            <Route path="admin" components={LayoutAdmin} onEnter={requireAuth}/>
         </Route>
     );
 };

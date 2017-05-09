@@ -11,6 +11,7 @@ export default class LoginOrRegister extends Component {
         super(props, context);
 
         this.state = {
+            errorMessage: '',
             regTitle: 'Регистрация',
             logTitle: 'Авторизация',
             isAuthorizes: false,
@@ -29,6 +30,9 @@ export default class LoginOrRegister extends Component {
 
     componentWillReceiveProps(nextProps) {
         console.log('LoginOrRegister ComponentWillReceiveProps', nextProps)
+        this.setState({
+            errorMessage: nextProps.user.message
+        })
     }
 
     cancelLoginPage = (e) => {
@@ -54,7 +58,8 @@ export default class LoginOrRegister extends Component {
 
         console.log('LoginOrRegister registerForm')
         this.setState({
-            loginFormLink: true
+            loginFormLink: false,
+            registerFormLink: true
         })
     }
 
@@ -70,7 +75,7 @@ export default class LoginOrRegister extends Component {
 
         } else
         {
-            this.props.manualLogin(model);
+            this.props.manualLogin(model, false);
             this.props.loginPage(false);
         }
     }
@@ -89,6 +94,7 @@ export default class LoginOrRegister extends Component {
                       <button className="form__button--submit" type="submit" disabled={!this.state.canSubmit}>Ok</button>
                       <button className="form__button--submit" type="submit" onClick={this.cancelLoginPage}>Отмена</button>
                  </Formsy.Form>
+                  <div className="error">{this.state.errorMessage}</div>
               </div>
             </div>
         )

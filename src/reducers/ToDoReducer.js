@@ -11,6 +11,10 @@ export default function todoReducer(state = defaultState, action) {
 
         case types.ADD_RESERVATION:
             return state.concat(action);
+
+        case types.CONFIRM_RESERVATION:
+            return state.concat(action);
+
         default:
             return state;
     }

@@ -20,7 +20,7 @@ import './css/RD.css';
 
 @connect(state => ({
     todos: state.todoss,
-    auth: state.auth,
+    user: state.user,
     loginPage: state.loginPage
 }))
 export default class Layout extends Component {
@@ -35,12 +35,14 @@ export default class Layout extends Component {
 
 
     render() {
-        const { todos, auth, loginPage, dispatch } = this.props;
+        const { todos, user, loginPage, dispatch } = this.props;
 
         return (
             <div className="App">
                 <LayHeader todos={todos}
                            loginPage={loginPage}
+                           user={user}
+                           admin={false}
                            {...bindActionCreators(TodoActions, dispatch)}
                            {...bindActionCreators(AuthAction, dispatch)}
                            {...bindActionCreators(LoginPageActions, dispatch)}/>
@@ -62,7 +64,11 @@ export default class Layout extends Component {
 
                 </div>
 
-                <LayFooter />
+                <LayFooter loginPage={loginPage}
+                           user={user}
+                           admin={false}
+                           {...bindActionCreators(AuthAction, dispatch)}
+                           {...bindActionCreators(LoginPageActions, dispatch)}/>
             </div>
         );
 

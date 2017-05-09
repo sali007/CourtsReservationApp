@@ -22,6 +22,7 @@ export default (app) => {
     if(userReservationController) {
         app.post('/reservation', userReservationController.getReservations);
         app.post('/addReservation', userReservationController.add)
+        app.post('/confirmReservation', userReservationController.confirm)
     } else {
         console.warn('fail to load controller');
     }

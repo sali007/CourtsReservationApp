@@ -25,6 +25,16 @@ function Reserve(date, data) {
     }
 }
 
+function Confirmed() {
+    return {
+        type: type.CONFIRM_RESERVATION,
+        data: data
+    }
+}
+
+export function confirmReserve() {
+
+}
 
 export function addReserve(id, date, court, username, userPhone, hour, summ, status) {
     console.log('COurt number', court)

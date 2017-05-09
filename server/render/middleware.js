@@ -16,6 +16,7 @@ export default function render(req, res) {
     const history = createMemoryHistory();
     const store = configureStore({
         user: {
+            admin: false,
             authenticated,
             isWaiting: false,
             message: '',

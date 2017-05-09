@@ -104,6 +104,10 @@ export function getReservations(req, res) {
     })
 }
 
+export function confirm(req, res) {
+
+}
+
 export function add(req, res) {
     let date = new Date(req.body.date),
         day = date.getDate(),
@@ -187,5 +191,6 @@ export function add(req, res) {
 
 export default {
     getReservations,
-    add
+    add,
+    confirm
 }

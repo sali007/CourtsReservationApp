@@ -22,12 +22,14 @@ class UIRow extends Component {
         holden: 'Арендовано',
         free: 'Свободно',
         hiden: 'Арендовано на долгий срок',
+        confirmed: 'Арендовано'
     }
 
     icons = {
         holden: 'UIpic__leased',
         free: 'UIpic__free',
-        hiden: 'UIpic__playball'
+        hiden: 'UIpic__playball',
+        confirmed: ''
     }
 
     render() {

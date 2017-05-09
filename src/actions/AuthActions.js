@@ -68,7 +68,7 @@ export function toggleLoginMode() {
     return { type: types.TOGGLE_LOGIN_MODE };
 }
 
-export function manualLogin(data) {
+export function manualLogin(data, admin) {
     return (dispatch) => {
         dispatch(beginLogin());
 
@@ -76,7 +76,7 @@ export function manualLogin(data) {
             .then((response) => {
                 if (response.status === 200) {
                     dispatch(loginSuccess(response.data.message));
-                    dispatch(push('/'));
+                    admin ? dispatch(push('/admin')) : dispatch(push('/'));
                 } else {
                     dispatch(loginError('Oops! Something went wrong!'));
                 }
@@ -106,7 +106,7 @@ export function signUp(data) {
     };
 }
 
-export function logOut() {
+export function logOut(isAdmin) {
     return (dispatch) => {
         dispatch(beginLogout());
 
@@ -114,6 +114,7 @@ export function logOut() {
             .then((response) => {
                 if (response.status === 200) {
                     dispatch(logoutSuccess());
+                    isAdmin ? dispatch(push('/login')) : '';
                 } else {
                     dispatch(logoutError());
                 }

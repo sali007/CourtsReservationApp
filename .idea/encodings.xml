@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="windows-1251">
+    <file url="file://$PROJECT_DIR$/src/components/css/bootstrap.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/components/css/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/components/css/css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/components/css/css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/components/css/settings.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/components/css/style.css" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1251" />
   </component>
 </project>
