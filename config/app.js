@@ -4,6 +4,6 @@
 //export const isDebug = ENV === 'development';
 //export const isClient = typeof window !== 'undefined';
 
-export const apiEndpoint = 'http://95.85.13.42:3001/' ;
+export const apiEndpoint = 'http://95.85.13.42/' ;
 // Replace with 'UA-########-#' or similar to enable tracking
 export const trackingID = null;
