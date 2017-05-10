@@ -5,7 +5,7 @@ import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 //import staticAssets from './static-assets';
 
-const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8080/' : '/';
+const assetUrl = process.env.NODE_ENV !== 'production' ? '/' : '/';
 
 const createApp = (store, props) => renderToString(
     <Provider store={store}>
